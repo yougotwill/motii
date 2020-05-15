@@ -1,3 +1,11 @@
+# Motii
+
+*the motivational calendar*
+
+Motii is a calendar that helps people motivate themselves when starting new habits.
+
+***It’s not a habit forming, it’s habit rewarding.***
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
