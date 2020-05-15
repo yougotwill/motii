@@ -1,0 +1,33 @@
+.calendar {
+  margin: 0 auto;
+  text-align: center;
+  .header {
+    margin: 1rem 0 2rem;
+    h2 {
+      margin: 0 1rem;
+      text-transform: uppercase;
+      display: inline;
+    }
+    .btn-month {
+      &.prev {
+  
+      }
+      &.next {
+        
+      }
+    }
+  }
+  .cells {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 95%;
+    .cell {
+      // width: calc(100% / 7);
+      // min-height: 36px;
+      // height: 100%;
+      width: 40px;
+      height: 40px;
+      border: 1px solid grey;
+    }
+  }
+}
