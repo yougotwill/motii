@@ -66,3 +66,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Resources
+
+-[How to Create a Simple React Calendar with Styled Components](https://dev.to/zhiyueyi/how-to-create-a-simple-react-calendar-with-styled-component-42n6)

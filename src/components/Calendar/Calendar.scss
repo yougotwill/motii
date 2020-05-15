@@ -1,33 +1,34 @@
 .calendar {
+  width: calc(320px - 48px);
+  border: 1px solid lightgrey;
+  box-shadow: 2px 2px 2px #eee;
   margin: 0 auto;
-  text-align: center;
-  .header {
-    margin: 1rem 0 2rem;
-    h2 {
-      margin: 0 1rem;
-      text-transform: uppercase;
-      display: inline;
-    }
-    .btn-month {
-      &.prev {
-  
-      }
-      &.next {
-        
-      }
-    }
+  button {
+    cursor: pointer;
   }
-  .cells {
+  .header {
+    padding: 10px 10px 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f5f6fa;
+  }
+  .content {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    max-width: 95%;
-    .cell {
-      // width: calc(100% / 7);
-      // min-height: 36px;
-      // height: 100%;
-      width: 40px;
+    .day {
+      width: 14.2%;
       height: 40px;
-      border: 1px solid grey;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      &.today {
+        border: 1px solid #eee;
+      }
+      &.selected {
+        background-color: #eee;
+      }
     }
   }
 }

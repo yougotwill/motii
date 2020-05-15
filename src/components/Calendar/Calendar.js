@@ -1,96 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Calendar = () => {
-  const getMonthData = (index) => {
-    // { date: '', days: {0: false, 1: false, ... 31: false}}
-    // const monthFromStorage = localStorage.getItem('2020-may');
-    const monthFromStorage = {
-      date: '2020-may',
-      days: {
-        0: false,
-        1: false,
-        2: false,
-        3: false,
-        4: false,
-        5: false,
-        6: false,
-        7: false,
-        8: false,
-        9: false,
-        10: false,
-        11: false,
-        12: false,
-        13: false,
-        14: false,
-        15: false,
-        16: false,
-        17: false,
-        18: false,
-        19: false,
-        20: false,
-        21: false,
-        22: false,
-        23: false,
-        24: false,
-        25: false,
-        26: false,
-        27: false,
-        28: false,
-        29: false,
-        30: false,
-      }
-    };
-    return monthFromStorage;
-  };
-  const setMonthData = (data /* { dayNumber: todoState } */) => {
-    const oldData = getMonthData();
-    
-  };
-  const months = [
-    'january',
-    'february',
-    'march',
-    'april',
-    'may',
-    'june',
-    'july',
-    'august',
-    'september',
-    'october',
-    'november',
-    'december'
-  ];
-  let monthIndex = 4;
-  const latestCells = Object.keys(getMonthData(5).days).map((key, index) => {
-    return <div key={index} id={`day-${index+1}`} className='cell' onClick={(event) => { toggle(event); }} />;
-  });
-  const toggle = (event) => {
-    const day = event.target.id.split('-')[1];
-    updateDay(day);
-    event.target.innerHTML = event.target.innerHTML ? '' : 'X';
-  };
-  const updateDay = (dayIndex) => {
+  const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const DAYS_OF_WEEK = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
+  const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+  const getStartDayOfMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
-  const changeMonth = (i) => {
-    if (i === -1 && monthIndex === 0) {
-      monthIndex = 11;
-    }
-    if (i === 1 && monthIndex === 11) {
-      monthIndex = 0;
-    }
-    monthIndex += i;
-    latestCells();
+
+  const today = new Date();
+  const [date, setDate] = useState(today);
+  const [day, setDay] = useState(date.getDate());
+  const [month, setMonth] = useState(date.getMonth());
+  const [year, setYear] = useState(date.getFullYear());
+  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
+
+  const isLeapYear = (year) => {
+    return (year % 4 === 0 && year % 10 !== 0 && year % 400 === 0);
   };
+  const days = isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
+
+  useEffect(() => {
+    setDay(date.getDate());
+    setMonth(date.getMonth());
+    setYear(date.getFullYear());
+    setStartDay(getStartDayOfMonth(date));
+  }, [date]);
 
   return (
     <div className='calendar'>
       <div className='header'>
-        <button className='btn-month prev' onClick={() => { changeMonth(-1); }}>PREV</button>
-        <h2>{months[monthIndex]}</h2>
-        <button className='btn-month next' onClick={() => { changeMonth(1); }}>NEXT</button>
+        <button onClick={() => { setDate(new Date(year, month - 1, day)); }}>Prev</button>
+        <div className='title'>{MONTHS[month]} {year}</div>
+        <button onClick={() => { setDate(new Date(year, month + 1, day)); }}>Next</button>
       </div>
-      <div className='cells'>{latestCells}</div>
+      <div className='content'>
+        {DAYS_OF_WEEK.map((d) => {
+          return (
+            <div className='day'>
+              <strong>{d}</strong>
+            </div>
+          );
+        })}
+        {Array(days[month] + (startDay - 1))
+          .fill(null)
+          .map((_, index) => {
+            const d = index - (startDay - 2);
+            return (
+              
+              <div
+                key={index}
+                className={`
+                  day
+                  ${d === today.getDay() ? ' today' : ''}
+                  ${d === day ? ' selected': ''}
+                `}
+                onClick={() => { setDate(new Date(year, month, d))}}>
+                {d > 0 ? d : ''}
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 };
