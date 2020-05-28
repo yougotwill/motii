@@ -37,19 +37,20 @@ const Calendar = () => {
         <button onClick={() => { setDate(new Date(year, month + 1, day)); }}>Next</button>
       </div>
       <div className='content'>
-        {DAYS_OF_WEEK.map((d) => {
+        {DAYS_OF_WEEK.map((d, index) => {
           return (
-            <div className='day'>
+            <div
+              key={index}
+              className='day'>
               <strong>{d}</strong>
             </div>
           );
         })}
-        {Array(days[month] + (startDay - 1))
+        {Array(days[month] + (startDay > 0 ? (startDay - 1) : (startDay + 6) ))
           .fill(null)
           .map((_, index) => {
-            const d = index - (startDay - 2);
+            const d = index - ( startDay > 0 ? (startDay - 2) : (startDay + 5) );
             return (
-              
               <div
                 key={index}
                 className={`
