@@ -4,8 +4,54 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0 1rem;
+  background: #F5F8FF;
+  &.dark {
+    background: #1A1F23;
+    color: #EB196D;
+    a, .arrow {
+      color: #F8FAFB;
+    }
+    .border {
+      border-color: #EB196D;
+    }
+  }
 }
 
-@import '../components/Login/Login.scss';
-@import '../components/Register/Register.scss';
-@import '../components/Calendar/Calendar.scss';
+.border {
+  border-width: 1px;
+  border-style: solid;
+}
+
+h1 {
+  margin: 0.25rem auto 0;
+  text-align: left;
+}
+
+a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+// mixins
+@import '../styles/mixins/screen.scss';
+
+// components
+@import '../components/Login/_Login.scss';
+@import '../components/Signup/_Signup.scss';
+@import '../components/Main/_Main.scss';
+@import '../components/Calendar/_Calendar.scss';
+@import '../components/Header/_Header.scss';
+@import '../components/HabitBox/_HabitBox.scss';
+@import '../components/StatsBox/_StatsBox.scss';
+@import '../components/About/_About.scss';
+@import '../components/Footer/_Footer.scss';
+
+@include screen($tablet) {
+  body {
+    max-width: $tablet;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

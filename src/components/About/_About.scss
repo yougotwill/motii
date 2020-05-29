@@ -1,0 +1,18 @@
+.about {
+  text-align: center;
+  margin: 0 1rem;
+  line-height: 1.5rem;
+  h1 {
+    text-align: center;
+  }
+  ol {
+    text-align: left;
+    li {
+      margin: 0.5rem auto;
+    }
+  }
+  .border {
+    margin: 2rem auto;
+    padding: 0 1rem 2rem;
+  }
+}

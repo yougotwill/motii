@@ -1,0 +1,19 @@
+.statsbox {
+  text-align: center;
+  margin: 1rem 0;
+  padding: 1rem 0;
+  h3 {
+    margin: 0 0 0.5rem;
+  }
+  div {
+    display: inline-block;
+    margin: 0 0.5rem;
+    h4 {
+      margin: 0;
+    }
+    p {
+      margin: 0.25rem auto;
+      font-size: 0.75rem;
+    }
+  }
+}

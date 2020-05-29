@@ -1,16 +1,14 @@
 .calendar {
-  width: calc(320px -12px);
-  border: 1px solid lightgrey;
-  box-shadow: 2px 2px 2px #eee;
-  margin: 0 auto;
+  // width: calc(320px - 24px);
+  padding-bottom: 1rem;
   button {
     cursor: pointer;
+    min-width: 75px;
   }
   .header {
     padding: 10px 10px 5px 10px;
     display: flex;
     justify-content: space-between;
-    background-color: #f5f6fa;
   }
   .content {
     width: 100%;
@@ -18,16 +16,28 @@
     flex-wrap: wrap;
     .day {
       width: 14.1%;
-      height: 40px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       &.today {
-        border: 1px solid #eee;
+        // border: 1px solid #eee;
       }
       &.selected {
-        background-color: #eee;
+        // background-color: #eee;
+      }
+      &.success {
+        position: relative;
+        &::before {
+          content: 'x';
+          color: red;
+          font-size: 4em;
+          position: absolute;
+          top: -68%;
+          left: 16%;
+          z-index: 10;
+        }
       }
     }
   }

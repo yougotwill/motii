@@ -3,7 +3,8 @@ import React from 'react';
 const Login = () => {
   return (
     <form class='login'>
-      <fieldset>
+      <h1>Motii</h1>
+      <fieldset className='border'>
         <legend>Login</legend>
         <label for='email'>Email</label><br />
         <input type='text' name='email' /><br />

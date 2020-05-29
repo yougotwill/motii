@@ -1,0 +1,13 @@
+footer {
+  margin: 1rem 0 2rem;
+  padding-right: 1rem;
+  text-align: center;
+  .sitemap {
+    a {
+      margin-left: 1rem;
+    }
+  }
+  @include screen($tablet) {
+    text-align: right;
+  }
+}

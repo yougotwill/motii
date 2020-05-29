@@ -1,18 +1,19 @@
 import React from 'react';
 
-const Register = () => {
+const Signup = () => {
   return (
-    <form class='register'>
-    <fieldset>
-      <legend>Register</legend>
+    <form class='signup'>
+    <h1>Motii</h1>
+    <fieldset className='border'>
+      <legend>Sign Up</legend>
       <label for='email'>Email</label><br />
       <input type='text' name='email' /><br />
       <label for='password'>Password</label><br />
       <input type='password' name='password' /><br />
-      <input type='submit' value='Register' />
+      <input type='submit' value='Sign Up' />
    </fieldset>
   </form>
   );
 };
 
-export default Register;
+export default Signup;

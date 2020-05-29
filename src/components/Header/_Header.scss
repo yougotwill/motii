@@ -1,0 +1,23 @@
+.header {
+  margin: 1rem 0;
+  h1 {
+    display: inline;
+  }
+  .options {
+    position: relative;
+    float: right;
+    margin: 0.9rem 0;
+    .account {
+      display: inline;
+      padding-right: 1.5rem;
+      a {
+        margin: 0 0.75rem;
+      }
+    }
+    .theme {
+      font-size: 1.3rem;
+      position: absolute;
+      right: 0;
+    }
+  }
+}

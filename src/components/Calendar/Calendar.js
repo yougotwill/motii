@@ -22,6 +22,11 @@ const Calendar = () => {
   };
   const days = isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
 
+  const handleDayClick = (event) => {
+    event.target.classList.toggle('success');
+    setDate(new Date(year, month, event.target.innerText));
+  };
+
   useEffect(() => {
     setDay(date.getDate());
     setMonth(date.getMonth());
@@ -30,7 +35,7 @@ const Calendar = () => {
   }, [date]);
 
   return (
-    <div className='calendar'>
+    <div className='calendar border'>
       <div className='header'>
         <button onClick={() => { setDate(new Date(year, month - 1, day)); }}>Prev</button>
         <div className='title'>{MONTHS[month]} {year}</div>
@@ -58,7 +63,9 @@ const Calendar = () => {
                   ${d === today.getDay() ? ' today' : ''}
                   ${d === day ? ' selected': ''}
                 `}
-                onClick={() => { setDate(new Date(year, month, d))}}>
+                onClick={(event) => {
+                  handleDayClick(event);
+                }}>
                 {d > 0 ? d : ''}
               </div>
             );
