@@ -33,7 +33,7 @@ const App = (props) => {
       data: data
     };
     const props = property.split('.');
-    if (props.length >= 1) {
+    if (props.length > 1) {
       if (config[props[0]][props[1]] === value) {
         return;
       }

@@ -32,10 +32,10 @@
         &::before {
           content: 'x';
           color: red;
-          font-size: 4em;
+          font-weight: 700;
+          font-size: 2em;
           position: absolute;
-          top: -68%;
-          left: 16%;
+          top: -21%;
           z-index: 10;
         }
       }
