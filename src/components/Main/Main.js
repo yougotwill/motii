@@ -6,12 +6,12 @@ import Header from '../Header/Header.js';
 import HabitBox from '../HabitBox/HabitBox.js';
 import StatsBox from '../StatsBox/StatsBox.js';
 
-const Main = ({ handleRouteChange, handleConfigChange, theme }) => {
+const Main = ({ handleRouteChange, handleConfigChange, data, theme }) => {
 
   return (
     <div className='main'>
       <Header handleRouteChange={handleRouteChange} handleConfigChange={handleConfigChange} theme={theme} />
-      <Calendar />
+      <Calendar handleConfigChange={handleConfigChange} data={data} />
       <HabitBox />
       <StatsBox />
       <div className='arrow'>

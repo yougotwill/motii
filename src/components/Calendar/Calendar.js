@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Calendar = () => {
+const Calendar = ({ handleConfigChange, data }) => {
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_OF_WEEK = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
@@ -22,7 +22,15 @@ const Calendar = () => {
   };
   const days = isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
 
+  const habit = 'Read Harry Potter'; // TODO Fix logic
+
   const handleDayClick = (event) => {
+    const dateString = `${year}-${month}-${event.target.innerText}`;
+    if (data[dateString]) {
+      handleConfigChange(`data.${dateString}`, '', true);
+    } else {
+      handleConfigChange(`data.${dateString}`, habit);
+    }
     event.target.classList.toggle('success');
     setDate(new Date(year, month, event.target.innerText));
   };
@@ -62,6 +70,7 @@ const Calendar = () => {
                   day
                   ${d === today.getDay() ? ' today' : ''}
                   ${d === day ? ' selected': ''}
+                  ${data[`${year}-${month}-${d}`] ? ' success' : ''}
                 `}
                 onClick={(event) => {
                   handleDayClick(event);
