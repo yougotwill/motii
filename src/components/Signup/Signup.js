@@ -2,7 +2,7 @@ import React from 'react';
 
 const Signup = () => {
   return (
-    <form class='signup'>
+    <form className='signup'>
     <h1>Motii</h1>
     <fieldset className='border'>
       <legend>Sign Up</legend>

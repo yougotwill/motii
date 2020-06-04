@@ -22,6 +22,7 @@ body {
 .border {
   border-width: 1px;
   border-style: solid;
+  border-color: black;
 }
 
 h1 {
@@ -32,6 +33,13 @@ h1 {
 a {
   font-weight: 700;
   text-decoration: none;
+}
+
+legend {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 // mixins
