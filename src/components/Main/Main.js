@@ -1,19 +1,42 @@
 // Design: https://www.figma.com/file/PrWnDYzLv8PPxdlV5GauiD/MainScreen?node-id=0%3A1
 import React from 'react';
 
+import { getNumDays } from '../../shared/constants';
+
 import Calendar from '../Calendar/Calendar.js';
 import Header from '../Header/Header.js';
 import HabitBox from '../HabitBox/HabitBox.js';
 import StatsBox from '../StatsBox/StatsBox.js';
 
-const Main = ({ handleRouteChange, handleConfigChange, data, theme }) => {
+const Main = ({ handleRouteChange, handleConfigChange, setStreak, setMissed, today, data, streak, missed, theme }) => {
+
+  const habit = 'Read Harry Potter'; // TODO Fix logic
+
+  const getRemaining = () => {
+    return getNumDays(today)[today.getMonth()] - today.getDate();
+  };
+
+  const calendarProps = {
+    habit,
+    today,
+    streak,
+    setMissed,
+    setStreak
+  };
+
+  const statsBoxProps = {
+    today,
+    getRemaining,
+    missed,
+    streak
+  };
 
   return (
     <div className='main'>
       <Header handleRouteChange={handleRouteChange} handleConfigChange={handleConfigChange} theme={theme} />
-      <Calendar handleConfigChange={handleConfigChange} data={data} />
+      <Calendar handleConfigChange={handleConfigChange} data={data} {...calendarProps} />
       <HabitBox />
-      <StatsBox />
+      <StatsBox {...statsBoxProps} />
       <div className='arrow'>
         <p>__________________</p>
         <p>________________</p>

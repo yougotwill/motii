@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { getNumDays } from './shared/constants';
+
 import './styles/App.scss';
 
 import Login from './components/Login/Login.js';
@@ -9,9 +11,14 @@ import About from './components/About/About.js';
 import Footer from './components/Footer/Footer.js';
 
 const App = (props) => {
+  const today = new Date();
+  console.log('Today is', today);
+
   const [route, setRoute] = useState();
   const [theme, setTheme] = useState('');
   const [data, setData] = useState({});
+  const [streak, setStreak] = useState(0);
+  const [missed, setMissed] = useState(0);
 
   const loadConfig = () => {
     let config = JSON.parse(localStorage.getItem('config'));
@@ -19,6 +26,13 @@ const App = (props) => {
       return {};
     }
     config.data ? setData(config.data) : setData({});
+
+    const streakVal = Object.keys(config.data).filter((key) => {
+      return Number(key.split('-')[1]) === today.getMonth();
+    }).length;
+    setStreak(streakVal);
+    const missedVal = today.getDate() - streak - 1 > 0 ? today.getDate() - streak - 1 : 0;
+    setMissed(missedVal);
 
     setTheme(config.theme);
     document.querySelector('body').className = '';
@@ -53,7 +67,7 @@ const App = (props) => {
       }
     }
     localStorage.setItem('config', JSON.stringify(config));
-    loadConfig();
+    return loadConfig();
   };
   useEffect(() => {
     loadConfig();
@@ -70,7 +84,17 @@ const App = (props) => {
           default:
             return (
               <div>
-                <Main handleRouteChange={setRoute} handleConfigChange={updateConfig} data={data} theme={theme} />
+                <Main
+                  handleRouteChange={setRoute}
+                  handleConfigChange={updateConfig}
+                  setStreak={setStreak}
+                  setMissed={setMissed}
+                  today={today}
+                  data={data}
+                  streak={streak}
+                  missed={missed}
+                  theme={theme}
+                />
                 <About />
                 <Footer />
               </div>

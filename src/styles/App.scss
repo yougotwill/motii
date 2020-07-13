@@ -16,6 +16,9 @@ body {
     .border {
       border-color: #EB196D;
     }
+    .calendar .content .day.today {
+      background-color: #333333;
+    }
   }
 }
 

@@ -1,3 +1,4 @@
+// TODO: Cleanup
 .calendar {
   // width: calc(320px - 24px);
   padding-bottom: 1rem;
@@ -22,13 +23,14 @@
       justify-content: center;
       cursor: pointer;
       &.today {
-        // border: 1px solid #eee;
+        background-color: #e6e6e6;
       }
       &.selected {
-        // background-color: #eee;
+        // font-weight: 700;
       }
       &.success {
         position: relative;
+        font-weight: unset;
         &::before {
           content: 'x';
           color: red;
