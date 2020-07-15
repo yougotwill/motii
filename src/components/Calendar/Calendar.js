@@ -8,8 +8,8 @@ const Calendar = ({
   habit,
   today,
   streak,
-  setMissed,
-  setStreak
+  updateStreak,
+  updateMissedDays
 }) => {
   const getStartDayOfMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
@@ -26,8 +26,14 @@ const Calendar = ({
       month === today.getMonth() &&
       d === today.getDate();
   };
-  const handleDayClick = (event) => {
-    // TODO shouldn't click on future days
+
+  const handleDayClick = (event, d) => {
+    // TODO Future days needs a better solution
+    const selectedDate = new Date(year, month, d);
+    if (selectedDate > today) {
+      return;
+    }
+
     const dateString = `${year}-${month}-${event.target.innerText}`;
     let value = 0;
     if (data[dateString]) {
@@ -39,10 +45,10 @@ const Calendar = ({
     }
     event.target.classList.toggle('success');
     setDate(new Date(year, month, event.target.innerText));
-    setStreak(streak += value);
-    // should only include streak from this month
-    const missedVal = today.getDate() - streak - 1 > 0 ? today.getDate() - streak - 1 : 0;
-    setMissed(missedVal);
+
+    if (month === today.getMonth()) {
+      updateStreak(streak += value);
+    }
   };
 
   useEffect(() => {
@@ -78,7 +84,7 @@ const Calendar = ({
                 key={index}
                 className={`day${isToday(d) ? ' today' : ''}${d === day ? ' selected': ''}${data[`${year}-${month}-${d}`] ? ' success' : ''}`}
                 onClick={(event) => {
-                  handleDayClick(event);
+                  handleDayClick(event, d);
                 }}>
                 {d > 0 ? d : ''}
               </div>

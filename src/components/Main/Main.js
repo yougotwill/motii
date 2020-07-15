@@ -8,7 +8,7 @@ import Header from '../Header/Header.js';
 import HabitBox from '../HabitBox/HabitBox.js';
 import StatsBox from '../StatsBox/StatsBox.js';
 
-const Main = ({ handleRouteChange, handleConfigChange, setStreak, setMissed, today, data, streak, missed, theme }) => {
+const Main = ({ handleRouteChange, handleConfigChange, updateStreak, updateMissedDays, today, data, streak, missed, theme }) => {
 
   const habit = 'Read Harry Potter'; // TODO Fix logic
 
@@ -20,8 +20,8 @@ const Main = ({ handleRouteChange, handleConfigChange, setStreak, setMissed, tod
     habit,
     today,
     streak,
-    setMissed,
-    setStreak
+    updateStreak,
+    updateMissedDays
   };
 
   const statsBoxProps = {

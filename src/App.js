@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import { getNumDays } from './shared/constants';
-
 import './styles/App.scss';
 
 import Login from './components/Login/Login.js';
@@ -12,13 +10,25 @@ import Footer from './components/Footer/Footer.js';
 
 const App = (props) => {
   const today = new Date();
-  console.log('Today is', today);
 
   const [route, setRoute] = useState();
   const [theme, setTheme] = useState('');
   const [data, setData] = useState({});
   const [streak, setStreak] = useState(0);
   const [missed, setMissed] = useState(0);
+
+  const updateStreak = (value) => {
+    const streakVal = value > 0 ? value : 0;
+    setStreak(streakVal);
+  };
+
+  const updateMissedDays = (streak) => {
+    let missedVal = 0;
+    if (today.getDate() - streak > 0) {
+      missedVal = today.getDate() - streak;
+    }
+    setMissed(missedVal);
+  };
 
   const loadConfig = () => {
     let config = JSON.parse(localStorage.getItem('config'));
@@ -27,12 +37,11 @@ const App = (props) => {
     }
     config.data ? setData(config.data) : setData({});
 
-    const streakVal = Object.keys(config.data).filter((key) => {
-      return Number(key.split('-')[1]) === today.getMonth();
-    }).length;
-    setStreak(streakVal);
-    const missedVal = today.getDate() - streak - 1 > 0 ? today.getDate() - streak - 1 : 0;
-    setMissed(missedVal);
+    const streakVal = config.data ? Object.keys(config.data).filter((key) => {
+        return Number(key.split('-')[1]) === today.getMonth();
+      }).length : 0;
+    updateStreak(streakVal);
+    updateMissedDays(streakVal);
 
     setTheme(config.theme);
     document.querySelector('body').className = '';
@@ -87,8 +96,8 @@ const App = (props) => {
                 <Main
                   handleRouteChange={setRoute}
                   handleConfigChange={updateConfig}
-                  setStreak={setStreak}
-                  setMissed={setMissed}
+                  updateStreak={setStreak}
+                  updateMissedDays={updateMissedDays}
                   today={today}
                   data={data}
                   streak={streak}
