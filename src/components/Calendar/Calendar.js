@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { MONTHS, DAYS_OF_WEEK, getNumDays } from '../../shared/constants';
+import { MONTHS, DAYS_OF_WEEK, getNumDays } from '../../shared/datetime';
 
 const Calendar = ({
   handleConfigChange,
@@ -15,17 +15,17 @@ const Calendar = ({
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
-  const [date, setDate] = useState(today);
-  const [day, setDay] = useState(date.getDate());
-  const [month, setMonth] = useState(date.getMonth());
-  const [year, setYear] = useState(date.getFullYear());
-  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
-
   const isToday = (d) => {
     return year === today.getFullYear() &&
       month === today.getMonth() &&
       d === today.getDate();
   };
+
+  const [date, setDate] = useState(today);
+  const [day, setDay] = useState(date.getDate());
+  const [month, setMonth] = useState(date.getMonth());
+  const [year, setYear] = useState(date.getFullYear());
+  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
 
   const handleDayClick = (event, d) => {
     // TODO Future days needs a better solution
@@ -43,6 +43,7 @@ const Calendar = ({
       handleConfigChange(`data.${dateString}`, habit);
       value = 1;
     }
+
     event.target.classList.toggle('success');
     setDate(new Date(year, month, event.target.innerText));
 

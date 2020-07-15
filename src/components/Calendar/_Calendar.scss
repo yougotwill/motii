@@ -26,11 +26,9 @@
         background-color: #e6e6e6;
       }
       &.selected {
-        // font-weight: 700;
       }
       &.success {
         position: relative;
-        font-weight: unset;
         &::before {
           content: 'x';
           color: red;

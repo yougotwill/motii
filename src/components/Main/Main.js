@@ -1,22 +1,26 @@
 // Design: https://www.figma.com/file/PrWnDYzLv8PPxdlV5GauiD/MainScreen?node-id=0%3A1
 import React from 'react';
 
-import { getNumDays } from '../../shared/constants';
-
 import Calendar from '../Calendar/Calendar.js';
 import Header from '../Header/Header.js';
 import HabitBox from '../HabitBox/HabitBox.js';
 import StatsBox from '../StatsBox/StatsBox.js';
 
-const Main = ({ handleRouteChange, handleConfigChange, updateStreak, updateMissedDays, today, data, streak, missed, theme }) => {
-
+const Main = ({
+  handleRouteChange,
+  handleConfigChange,
+  updateStreak,
+  updateMissedDays,
+  today,
+  data,
+  streak,
+  missed,
+  theme
+}) => {
   const habit = 'Read Harry Potter'; // TODO Fix logic
 
-  const getRemaining = () => {
-    return getNumDays(today)[today.getMonth()] - today.getDate();
-  };
-
   const calendarProps = {
+    data,
     habit,
     today,
     streak,
@@ -26,7 +30,6 @@ const Main = ({ handleRouteChange, handleConfigChange, updateStreak, updateMisse
 
   const statsBoxProps = {
     today,
-    getRemaining,
     missed,
     streak
   };
@@ -34,7 +37,7 @@ const Main = ({ handleRouteChange, handleConfigChange, updateStreak, updateMisse
   return (
     <div className='main'>
       <Header handleRouteChange={handleRouteChange} handleConfigChange={handleConfigChange} theme={theme} />
-      <Calendar handleConfigChange={handleConfigChange} data={data} {...calendarProps} />
+      <Calendar handleConfigChange={handleConfigChange} {...calendarProps} />
       <HabitBox />
       <StatsBox {...statsBoxProps} />
       <div className='arrow'>

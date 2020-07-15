@@ -23,20 +23,16 @@ const App = (props) => {
   };
 
   const updateMissedDays = (streak) => {
-    let missedVal = 0;
-    if (today.getDate() - streak > 0) {
-      missedVal = today.getDate() - streak;
-    }
+    const missedVal = today.getDate() - streak > 0 ? (today.getDate() - streak) : 0;
     setMissed(missedVal);
   };
 
   const loadConfig = () => {
     let config = JSON.parse(localStorage.getItem('config'));
-    if (!config) {
-      return {};
-    }
-    config.data ? setData(config.data) : setData({});
+    if (!config) { return {}; }
 
+    // load properties
+    config.data ? setData(config.data) : setData({});
     const streakVal = config.data ? Object.keys(config.data).filter((key) => {
         return Number(key.split('-')[1]) === today.getMonth();
       }).length : 0;
@@ -50,11 +46,13 @@ const App = (props) => {
     }
     return config;
   };
+
   const updateConfig = (property, value, clear=false) => {
     const config = {
       theme: theme,
       data: data
     };
+
     const props = property.split('.');
     if (props.length > 1) {
       if (config[props[0]][props[1]] === value) {
@@ -78,6 +76,19 @@ const App = (props) => {
     localStorage.setItem('config', JSON.stringify(config));
     return loadConfig();
   };
+
+  const mainProps = {
+    handleRouteChange: setRoute,
+    handleConfigChange: updateConfig,
+    updateStreak: setStreak,
+    updateMissedDays: updateMissedDays,
+    today: today,
+    data: data,
+    streak: streak,
+    missed: missed,
+    theme: theme
+  };
+
   useEffect(() => {
     loadConfig();
   }, []);
@@ -93,17 +104,7 @@ const App = (props) => {
           default:
             return (
               <div>
-                <Main
-                  handleRouteChange={setRoute}
-                  handleConfigChange={updateConfig}
-                  updateStreak={setStreak}
-                  updateMissedDays={updateMissedDays}
-                  today={today}
-                  data={data}
-                  streak={streak}
-                  missed={missed}
-                  theme={theme}
-                />
+                <Main {...mainProps} />
                 <About />
                 <Footer />
               </div>

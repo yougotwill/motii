@@ -1,13 +1,16 @@
 import React from 'react';
 
-import { MONTHS } from '../../shared/constants';
+import { MONTHS, getNumDays } from '../../shared/datetime';
 
 const StatsBox = ({
   today,
-  getRemaining,
   missed,
   streak,
 }) => {
+  const getRemainingDays = () => {
+    return getNumDays(today)[today.getMonth()] - today.getDate();
+  };
+
   return (
     <form className='statsbox'>
       <fieldset className='border'>
@@ -18,7 +21,7 @@ const StatsBox = ({
         </div>
         <div id='remaining'>
           <p>Remaining</p>
-          <h4>{getRemaining()} days</h4>
+          <h4>{getRemainingDays()} days</h4>
         </div>
         <div id='missed'>
           <p>Missed</p>
