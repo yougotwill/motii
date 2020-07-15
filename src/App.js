@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import './styles/App.scss';
 
-import Login from './components/Login/Login.js';
-import Signup from './components/Signup/Signup.js';
-import Main from './components/Main/Main.js';
-import About from './components/About/About.js';
-import Footer from './components/Footer/Footer.js';
+import Login from './pages/Login/Login.js';
+import Signup from './pages/Signup/Signup.js';
+import Main from './pages/Main/Main.js';
 
 const App = (props) => {
   const today = new Date();
@@ -100,15 +98,9 @@ const App = (props) => {
           case 'login':
             return <Login />;
           case 'signup':
-            return <Signup />
+            return <Signup />;
           default:
-            return (
-              <div>
-                <Main {...mainProps} />
-                <About />
-                <Footer />
-              </div>
-              );
+            return <Main {...mainProps} />;
         }
       })()}
     </div>

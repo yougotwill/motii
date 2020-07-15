@@ -1,10 +1,12 @@
 // Design: https://www.figma.com/file/PrWnDYzLv8PPxdlV5GauiD/MainScreen?node-id=0%3A1
 import React from 'react';
 
-import Calendar from '../Calendar/Calendar.js';
-import Header from '../Header/Header.js';
-import HabitBox from '../HabitBox/HabitBox.js';
-import StatsBox from '../StatsBox/StatsBox.js';
+import Calendar from '../../components/Calendar/Calendar.js';
+import Header from '../../components/Header/Header.js';
+import HabitBox from '../../components/HabitBox/HabitBox.js';
+import StatsBox from '../../components/StatsBox/StatsBox.js';
+import About from '../../components/About/About.js';
+import Footer from '../../components/Footer/Footer.js';
 
 const Main = ({
   handleRouteChange,
@@ -52,6 +54,8 @@ const Main = ({
         <p>__</p>
         <p>_</p>
       </div>
+      <About />
+      <Footer />
     </div>
   );
 };
