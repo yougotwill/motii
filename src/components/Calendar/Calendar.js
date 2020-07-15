@@ -1,30 +1,55 @@
 import React, { useState, useEffect } from 'react';
 
-const Calendar = () => {
-  const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  const DAYS_OF_WEEK = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
-  const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+import { MONTHS, DAYS_OF_WEEK, getNumDays } from '../../shared/datetime';
 
+const Calendar = ({
+  handleConfigChange,
+  data,
+  habit,
+  today,
+  streak,
+  updateStreak,
+  updateMissedDays
+}) => {
   const getStartDayOfMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
-  const today = new Date();
+  const isToday = (d) => {
+    return year === today.getFullYear() &&
+      month === today.getMonth() &&
+      d === today.getDate();
+  };
+
   const [date, setDate] = useState(today);
   const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
   const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
 
-  const isLeapYear = (year) => {
-    return (year % 4 === 0 && year % 10 !== 0 && year % 400 === 0);
-  };
-  const days = isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
+  const handleDayClick = (event, d) => {
+    // TODO Future days needs a better solution
+    const selectedDate = new Date(year, month, d);
+    if (selectedDate > today) {
+      return;
+    }
 
-  const handleDayClick = (event) => {
+    const dateString = `${year}-${month}-${event.target.innerText}`;
+    let value = 0;
+    if (data[dateString]) {
+      handleConfigChange(`data.${dateString}`, '', true);
+      value = -1;
+    } else {
+      handleConfigChange(`data.${dateString}`, habit);
+      value = 1;
+    }
+
     event.target.classList.toggle('success');
     setDate(new Date(year, month, event.target.innerText));
+
+    if (month === today.getMonth()) {
+      updateStreak(streak += value);
+    }
   };
 
   useEffect(() => {
@@ -51,20 +76,16 @@ const Calendar = () => {
             </div>
           );
         })}
-        {Array(days[month] + (startDay > 0 ? (startDay - 1) : (startDay + 6) ))
+        {Array(getNumDays(date)[month] + (startDay > 0 ? (startDay - 1) : (startDay + 6) ))
           .fill(null)
           .map((_, index) => {
             const d = index - ( startDay > 0 ? (startDay - 2) : (startDay + 5) );
             return (
               <div
                 key={index}
-                className={`
-                  day
-                  ${d === today.getDay() ? ' today' : ''}
-                  ${d === day ? ' selected': ''}
-                `}
+                className={`day${isToday(d) ? ' today' : ''}${d === day ? ' selected': ''}${data[`${year}-${month}-${d}`] ? ' success' : ''}`}
                 onClick={(event) => {
-                  handleDayClick(event);
+                  handleDayClick(event, d);
                 }}>
                 {d > 0 ? d : ''}
               </div>

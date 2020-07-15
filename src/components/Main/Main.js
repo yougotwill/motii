@@ -6,14 +6,40 @@ import Header from '../Header/Header.js';
 import HabitBox from '../HabitBox/HabitBox.js';
 import StatsBox from '../StatsBox/StatsBox.js';
 
-const Main = ({ handleRouteChange, handleConfigChange, theme }) => {
+const Main = ({
+  handleRouteChange,
+  handleConfigChange,
+  updateStreak,
+  updateMissedDays,
+  today,
+  data,
+  streak,
+  missed,
+  theme
+}) => {
+  const habit = 'Read Harry Potter'; // TODO Fix logic
+
+  const calendarProps = {
+    data,
+    habit,
+    today,
+    streak,
+    updateStreak,
+    updateMissedDays
+  };
+
+  const statsBoxProps = {
+    today,
+    missed,
+    streak
+  };
 
   return (
     <div className='main'>
       <Header handleRouteChange={handleRouteChange} handleConfigChange={handleConfigChange} theme={theme} />
-      <Calendar />
+      <Calendar handleConfigChange={handleConfigChange} {...calendarProps} />
       <HabitBox />
-      <StatsBox />
+      <StatsBox {...statsBoxProps} />
       <div className='arrow'>
         <p>__________________</p>
         <p>________________</p>
