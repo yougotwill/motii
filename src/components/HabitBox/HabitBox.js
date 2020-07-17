@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
-const HabitBox = () => {
+import Editable from '../Editable/Editable.js';
+
+const HabitBox = ({ habit, setHabit }) => {
+  const inputRef = useRef();
   return (
     <form className='habitbox'>
       <fieldset className='border'>
         <legend>Habit</legend>
-        <h3>Read Harry Potter</h3>
+        <Editable
+          text={habit}
+          placeholder='Enter your habit'
+          type='input'
+          childRef={inputRef}>
+          <input
+            ref={inputRef}
+            type='text'
+            name='habit'
+            placeholder='Enter your habit'
+            value={habit}
+            onChange={(event) => { setHabit(event.target.value); }}
+          />
+        </Editable>
       </fieldset>
     </form>
   );

@@ -1,5 +1,5 @@
 // Design: https://www.figma.com/file/PrWnDYzLv8PPxdlV5GauiD/MainScreen?node-id=0%3A1
-import React from 'react';
+import React, { useState } from 'react';
 
 import Calendar from '../../components/Calendar/Calendar.js';
 import Header from '../../components/Header/Header.js';
@@ -19,7 +19,7 @@ const Main = ({
   missed,
   theme
 }) => {
-  const habit = 'Read Harry Potter'; // TODO Fix logic
+  const [habit, setHabit] = useState('Read Harry Potter');
 
   const calendarProps = {
     data,
@@ -40,7 +40,7 @@ const Main = ({
     <div className='main'>
       <Header handleRouteChange={handleRouteChange} handleConfigChange={handleConfigChange} theme={theme} />
       <Calendar handleConfigChange={handleConfigChange} {...calendarProps} />
-      <HabitBox />
+      <HabitBox habit={habit} setHabit={setHabit} />
       <StatsBox {...statsBoxProps} />
       <div className='arrow'>
         <p>__________________</p>
