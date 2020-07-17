@@ -1,4 +1,45 @@
 .habitbox {
   text-align: center;
   margin: 1rem 0;
+  section {
+    margin: 0.5rem auto;
+    width: 240px;
+    input {
+      font-size: 1.17rem;
+      font-weight: 700;
+      text-align: center;
+      border-width: 1px;
+      border-style: solid;
+      border-color: currentColor;
+      padding: 0.25rem 0;
+      line-height: 1.2;
+      width: 100%;
+      &:focus{
+        outline: none;
+      }
+    }
+    span {
+      // h3
+      font-size: 1.17em;
+      font-weight: 700;
+      display: block;
+      text-align: center;
+      margin: 0 auto;
+      padding: 0.25rem 0;
+      line-height: 1.2;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border: 1px solid transparent;
+      &:hover {
+        border-width: 1px;
+        border-style: solid;
+        border-color: currentColor;
+      }
+    }
+    @include screen($tablet) {
+      width: 500px;
+    }
+  }
 }

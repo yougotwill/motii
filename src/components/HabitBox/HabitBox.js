@@ -12,7 +12,8 @@ const HabitBox = ({ habit, setHabit }) => {
           text={habit}
           placeholder='Enter your habit'
           type='input'
-          childRef={inputRef}>
+          childRef={inputRef}
+        >
           <input
             ref={inputRef}
             type='text'

@@ -7,9 +7,13 @@ body {
   user-select: none;
   margin: 0 1rem;
   background: #F5F8FF;
+
   &.dark {
     background: #1A1F23;
     color: #EB196D;
+    input {
+      background: #1A1F23;
+    }
     a, .arrow {
       color: #F8FAFB;
     }
@@ -36,6 +40,11 @@ h1 {
 a {
   font-weight: 700;
   text-decoration: none;
+}
+
+input {
+  background: #F5F8FF;
+  color: currentColor;
 }
 
 legend {
