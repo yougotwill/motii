@@ -1,17 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Header = ({ handleRouteChange, handleConfigChange, theme }) => {
+const Header = ({ handleConfigChange, theme }) => {
   const updateTheme = (themeName) => {
     handleConfigChange('theme', themeName);
   };
 
   return (
     <div className='header'>
-      <h1>Motii</h1>
+      <Link to='/'>
+        <h1>Motii</h1>
+      </Link>
       <div className='options'>
         <div className='account'>
-          <a onClick={() => handleRouteChange('login')}>Login</a>
-          <a onClick={() => handleRouteChange('signup')}>Sign up</a>
+          <Link to='/login'>Login</Link>
+          <Link to='/signup'>Sign Up</Link>
         </div>
         <span className='theme' role='img' aria-label={theme ? 'sun' : 'sunglasses'} onClick={() => updateTheme(theme ? '' : 'dark')}>{theme ? '☀️' : '😎'}</span>
       </div>

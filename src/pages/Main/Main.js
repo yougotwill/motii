@@ -9,7 +9,6 @@ import About from '../../components/About/About.js';
 import Footer from '../../components/Footer/Footer.js';
 
 const Main = ({
-  handleRouteChange,
   handleConfigChange,
   updateStreak,
   updateMissedDays,
@@ -38,7 +37,7 @@ const Main = ({
 
   return (
     <div className='main'>
-      <Header handleRouteChange={handleRouteChange} handleConfigChange={handleConfigChange} theme={theme} />
+      <Header handleConfigChange={handleConfigChange} theme={theme} />
       <Calendar handleConfigChange={handleConfigChange} {...calendarProps} />
       <HabitBox />
       <StatsBox {...statsBoxProps} />

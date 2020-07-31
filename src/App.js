@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
 
 import './styles/App.scss';
 
@@ -9,7 +14,6 @@ import Main from './pages/Main/Main.js';
 const App = (props) => {
   const today = new Date();
 
-  const [route, setRoute] = useState();
   const [theme, setTheme] = useState('');
   const [data, setData] = useState({});
   const [streak, setStreak] = useState(0);
@@ -76,7 +80,6 @@ const App = (props) => {
   };
 
   const mainProps = {
-    handleRouteChange: setRoute,
     handleConfigChange: updateConfig,
     updateStreak: setStreak,
     updateMissedDays: updateMissedDays,
@@ -92,18 +95,21 @@ const App = (props) => {
   }, []);
 
   return (
-    <div className='app'>
-      {(() => {
-        switch(route) {
-          case 'login':
-            return <Login />;
-          case 'signup':
-            return <Signup />;
-          default:
-            return <Main {...mainProps} />;
-        }
-      })()}
-    </div>
+    <Router>
+      <div className='app'>
+        <Switch>
+          <Route path='/login'>
+            <Login />
+          </Route>
+          <Route path='/signup'>
+            <Signup />
+          </Route>
+          <Route path='/'>
+            <Main {...mainProps} />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
