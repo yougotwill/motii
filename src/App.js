@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter,
   Switch,
-  Route
+  Route,
+  withRouter
 } from 'react-router-dom';
 
 import './styles/App.scss';
@@ -11,6 +12,9 @@ import Login from './pages/Login/Login.js';
 import Signup from './pages/Signup/Signup.js';
 import Main from './pages/Main/Main.js';
 import Privacy from './pages/Privacy/Privacy.js';
+import Settings from './pages/Settings/Settings.js';
+
+import Header from './components/Header/Header.js';
 
 const App = (props) => {
   const today = new Date();
@@ -80,6 +84,8 @@ const App = (props) => {
     return loadConfig();
   };
 
+  const HeaderWithRouter = withRouter(Header);
+
   const mainProps = {
     handleConfigChange: updateConfig,
     updateStreak: setStreak,
@@ -87,8 +93,7 @@ const App = (props) => {
     today: today,
     data: data,
     streak: streak,
-    missed: missed,
-    theme: theme
+    missed: missed
   };
 
   useEffect(() => {
@@ -98,6 +103,7 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <div className='app'>
+        <HeaderWithRouter handleConfigChange={updateConfig} theme={theme} />
         <Switch>
           <Route path='/login'>
             <Login />
@@ -107,6 +113,9 @@ const App = (props) => {
           </Route>
           <Route path='/privacy'>
             <Privacy />
+          </Route>
+          <Route path='/settings'>
+            <Settings handleConfigChange={updateConfig} />
           </Route>
           <Route path='/'>
             <Main {...mainProps} />

@@ -2,7 +2,6 @@
 import React from 'react';
 
 import Calendar from '../../components/Calendar/Calendar.js';
-import Header from '../../components/Header/Header.js';
 import HabitBox from '../../components/HabitBox/HabitBox.js';
 import StatsBox from '../../components/StatsBox/StatsBox.js';
 import About from '../../components/About/About.js';
@@ -15,8 +14,7 @@ const Main = ({
   today,
   data,
   streak,
-  missed,
-  theme
+  missed
 }) => {
   const habit = 'Read Harry Potter'; // TODO Fix logic
 
@@ -37,7 +35,6 @@ const Main = ({
 
   return (
     <div className='main'>
-      <Header handleConfigChange={handleConfigChange} theme={theme} />
       <Calendar handleConfigChange={handleConfigChange} {...calendarProps} />
       <HabitBox />
       <StatsBox {...statsBoxProps} />

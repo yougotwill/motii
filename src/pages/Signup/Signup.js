@@ -1,11 +1,8 @@
 import React from 'react';
 
-import Header from '../../components/Header/Header.js';
-
 const Signup = () => {
   return (
     <div className='signup'>
-      <Header />
       <form>
         <fieldset className='border'>
           <legend>Sign Up</legend>

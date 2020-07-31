@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Header = ({ handleConfigChange, theme }) => {
+const Header = ({location, handleConfigChange, theme }) => {
   const updateTheme = (themeName) => {
     handleConfigChange('theme', themeName);
   };
@@ -11,7 +11,7 @@ const Header = ({ handleConfigChange, theme }) => {
       <Link to='/'>
         <h1>Motii</h1>
       </Link>
-      { handleConfigChange ?
+      { location.pathname === '/' || location.pathname === '/settings' ?
         <div className='options'>
           <div className='account'>
             <Link to='/login'>Login</Link>
