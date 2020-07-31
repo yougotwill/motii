@@ -66,6 +66,10 @@ legend {
 @import '../components/Footer/_Footer.scss';
 
 @include screen($tablet) {
+  // https://css-tricks.com/eliminate-jumps-in-horizontal-centering-by-forcing-a-scroll-bar/
+  html {
+    overflow-y: scroll;
+  }
   body {
     max-width: $tablet;
     margin: 0 auto;

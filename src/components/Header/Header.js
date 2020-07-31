@@ -11,13 +11,15 @@ const Header = ({ handleConfigChange, theme }) => {
       <Link to='/'>
         <h1>Motii</h1>
       </Link>
-      <div className='options'>
-        <div className='account'>
-          <Link to='/login'>Login</Link>
-          <Link to='/signup'>Sign Up</Link>
+      { handleConfigChange ?
+        <div className='options'>
+          <div className='account'>
+            <Link to='/login'>Login</Link>
+            <Link to='/signup'>Sign Up</Link>
+          </div>
+          <span className='theme' role='img' aria-label={theme ? 'sun' : 'sunglasses'} onClick={() => updateTheme(theme ? '' : 'dark')}>{theme ? '☀️' : '😎'}</span>
         </div>
-        <span className='theme' role='img' aria-label={theme ? 'sun' : 'sunglasses'} onClick={() => updateTheme(theme ? '' : 'dark')}>{theme ? '☀️' : '😎'}</span>
-      </div>
+      : null}
     </div>
   );
 };

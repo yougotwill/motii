@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route
 } from 'react-router-dom';
@@ -10,6 +10,7 @@ import './styles/App.scss';
 import Login from './pages/Login/Login.js';
 import Signup from './pages/Signup/Signup.js';
 import Main from './pages/Main/Main.js';
+import Privacy from './pages/Privacy/Privacy.js';
 
 const App = (props) => {
   const today = new Date();
@@ -95,7 +96,7 @@ const App = (props) => {
   }, []);
 
   return (
-    <Router>
+    <BrowserRouter>
       <div className='app'>
         <Switch>
           <Route path='/login'>
@@ -104,12 +105,15 @@ const App = (props) => {
           <Route path='/signup'>
             <Signup />
           </Route>
+          <Route path='/privacy'>
+            <Privacy />
+          </Route>
           <Route path='/'>
             <Main {...mainProps} />
           </Route>
         </Switch>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 };
 
