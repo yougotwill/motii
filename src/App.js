@@ -15,6 +15,7 @@ import Privacy from './pages/Privacy/Privacy.js';
 import Settings from './pages/Settings/Settings.js';
 
 import Header from './components/Header/Header.js';
+import Footer from './components/Footer/Footer.js';
 
 const App = (props) => {
   const today = new Date();
@@ -115,10 +116,16 @@ const App = (props) => {
             <Privacy />
           </Route>
           <Route path='/settings'>
-            <Settings handleConfigChange={updateConfig} />
+            <>
+              <Settings handleConfigChange={updateConfig} />
+              <Footer />
+            </>
           </Route>
           <Route path='/'>
-            <Main {...mainProps} />
+            <>
+              <Main {...mainProps} />
+              <Footer />
+            </>
           </Route>
         </Switch>
       </div>

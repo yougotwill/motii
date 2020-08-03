@@ -5,7 +5,6 @@ import Calendar from '../../components/Calendar/Calendar.js';
 import HabitBox from '../../components/HabitBox/HabitBox.js';
 import StatsBox from '../../components/StatsBox/StatsBox.js';
 import About from '../../components/About/About.js';
-import Footer from '../../components/Footer/Footer.js';
 
 const Main = ({
   handleConfigChange,
@@ -51,7 +50,6 @@ const Main = ({
         <p>_</p>
       </div>
       <About />
-      <Footer />
     </div>
   );
 };
