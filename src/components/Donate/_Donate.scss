@@ -1,29 +1,27 @@
 .donate {
+  margin: 1rem auto;
+  p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 3rem auto 2rem;
+  }
   a {
     margin: 0 auto;
+    button {
+      margin-bottom: 1rem;
+    }
     svg {
+      width: 24px;
+      height: 28px;
       margin-right: 0;
     }
-    &.donate-button {
-      width: 224px;
-      height: 50px;
-      background: darken(blue, 24%);
-      color: white;
-      span {
-        font-size: 20px;
-        text-shadow: 1px 1px 1px lighten(black, 25%);
-      }
-      &:hover {
-        background: darken(blue, 20%);
-      }
+  }
+  @include screen($tablet) {
+    h3 {
+      margin-right: 1rem;
     }
-    &.social-button {
-      width: 75px;
-      height: 75px;
-      svg {
-        width: 48px;
-        height: 48px;
-      }
+    a, h3 {
+      display: inline;
     }
   }
 }

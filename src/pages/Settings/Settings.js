@@ -3,6 +3,8 @@ import React from 'react';
 
 import Donate from '../../components/Donate/Donate.js';
 
+import { version } from '../../../package.json';
+
 const Settings = ({ handleConfigChange }) => {
   const clearConfig = () => {
     // TODO confirmation
@@ -28,10 +30,11 @@ const Settings = ({ handleConfigChange }) => {
           <button onClick={handlePositivity}>Turn On</button>
         </div>
         <div className='setting'>
-          <h3>See Motii's source code</h3>
+          <h3>See source code</h3>
           <a href='https://github.com/yougotwill/motii' target='_blank' rel='noopener noreferrer'><button>View Code</button></a>
         </div>
-		<Donate />
+    		<Donate />
+        <p className='version'>v{version}</p>
       </div>
     </div>
   );
