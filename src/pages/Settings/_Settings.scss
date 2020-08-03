@@ -1,0 +1,23 @@
+.settings {
+  text-align: center;
+  .panel {
+    padding: 2rem;
+    h2 {
+      margin: 0 0 2rem 0;
+      font-size: 1.75em;
+    }
+    .setting {
+      h3, button {
+        display: inline;
+        margin: 1rem 1rem 1rem 0;
+      }
+    }
+    @include screen($tablet) {
+      display: inline-block;
+      text-align: left;
+      h2 {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

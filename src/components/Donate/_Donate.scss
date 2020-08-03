@@ -1,0 +1,29 @@
+.donate {
+  a {
+    margin: 0 auto;
+    svg {
+      margin-right: 0;
+    }
+    &.donate-button {
+      width: 224px;
+      height: 50px;
+      background: darken(blue, 24%);
+      color: white;
+      span {
+        font-size: 20px;
+        text-shadow: 1px 1px 1px lighten(black, 25%);
+      }
+      &:hover {
+        background: darken(blue, 20%);
+      }
+    }
+    &.social-button {
+      width: 75px;
+      height: 75px;
+      svg {
+        width: 48px;
+        height: 48px;
+      }
+    }
+  }
+}

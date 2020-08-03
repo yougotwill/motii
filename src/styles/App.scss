@@ -56,6 +56,7 @@ legend {
 @import '../pages/Login/_Login.scss';
 @import '../pages/Signup/_Signup.scss';
 @import '../pages/Main/_Main.scss';
+@import '../pages/Settings/_Settings.scss';
 
 // components
 @import '../components/Calendar/_Calendar.scss';
@@ -64,6 +65,7 @@ legend {
 @import '../components/StatsBox/_StatsBox.scss';
 @import '../components/About/_About.scss';
 @import '../components/Footer/_Footer.scss';
+@import '../components/Donate/_Donate.scss';
 
 @include screen($tablet) {
   // https://css-tricks.com/eliminate-jumps-in-horizontal-centering-by-forcing-a-scroll-bar/
