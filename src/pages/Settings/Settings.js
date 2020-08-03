@@ -18,8 +18,8 @@ const Settings = ({ handleConfigChange }) => {
   };
 
   return (
-    <div className='settings'>
-      <div className='panel border'>
+    <div className='settings border'>
+      <div className='panel'>
         <h2>Settings</h2>
         <div className='setting'>
           <h3>Clear local data</h3>

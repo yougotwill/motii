@@ -17,7 +17,8 @@ const Header = ({location, handleConfigChange, theme }) => {
             <Link to='/login'>Login</Link>
             <Link to='/signup'>Sign Up</Link>
           </div>
-          <span className='theme' role='img' aria-label={theme ? 'sun' : 'sunglasses'} onClick={() => updateTheme(theme ? '' : 'dark')}>{theme ? '☀️' : '😎'}</span>
+          <span className='theme-toggle' role='img' aria-label={theme ? 'sun' : 'sunglasses'} onClick={() => updateTheme(theme ? '' : 'dark')}>{theme ? '☀️' : '😎'}</span>
+          <Link to={location.pathname !== '/settings' ? '/settings' : '/'}><span className='settings-toggle' role='img' aria-label={'gear'}>⚙️</span></Link>
         </div>
       : null}
     </div>

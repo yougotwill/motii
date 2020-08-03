@@ -7,9 +7,6 @@
   }
   a {
     margin: 0 auto;
-    button {
-      margin-bottom: 1rem;
-    }
     svg {
       width: 24px;
       height: 28px;
@@ -22,6 +19,14 @@
     }
     a, h3 {
       display: inline;
+    }
+    .option {
+      margin-bottom: 0.5rem;
+    }
+    .social-button {
+      svg {
+        vertical-align: middle;
+      }
     }
   }
 }
