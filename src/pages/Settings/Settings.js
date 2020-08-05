@@ -42,11 +42,11 @@ const Settings = ({
         </div>
         <div className='setting'>
           <h3>Want to request a feature?</h3>
-          <a href='https://github.com/yougotwill/motii/issues/new?template=feature_request.md' target='_blank' rel='noopener noreferrer'><button>Feature Request</button></a>
+          <a href='https://github.com/yougotwill/motii/issues/new?labels=enhancement&template=feature_request.md' target='_blank' rel='noopener noreferrer'><button>Feature Request</button></a>
         </div>
         <div className='setting'>
           <h3>Found a problem or bug?</h3>
-          <a href='https://github.com/yougotwill/motii/issues/new?template=bug_report.md' target='_blank' rel='noopener noreferrer'><button>Report Issue</button></a>
+          <a href='https://github.com/yougotwill/motii/issues/new?labels=bug&template=bug_report.md' target='_blank' rel='noopener noreferrer'><button>Report Issue</button></a>
         </div>
         <div className='setting'>
           <h3>See source code</h3>
