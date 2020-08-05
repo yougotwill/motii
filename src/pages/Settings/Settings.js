@@ -49,6 +49,14 @@ const Settings = ({
           <a href='https://github.com/yougotwill/motii' target='_blank' rel='noopener noreferrer'><button>View Code</button></a>
         </div>
     		<Donate />
+        <div className='setting'>
+          <h3>Want to request a feature?</h3>
+          <a href='https://github.com/yougotwill/motii/issues/new?template=feature_request.md' target='_blank' rel='noopener noreferrer'><button>Feature request</button></a>
+        </div>
+        <div className='setting'>
+          <h3>Found a problem or bug?</h3>
+          <a href='https://github.com/yougotwill/motii/issues/new?template=bug_report.md' target='_blank' rel='noopener noreferrer'><button>Report issue</button></a>
+        </div>
         <p className='version'>v{version}</p>
       </div>
     </div>
