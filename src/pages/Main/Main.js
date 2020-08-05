@@ -10,6 +10,7 @@ const Main = ({
   handleConfigChange,
   updateStreak,
   updateMissedDays,
+  hideIntro,
   today,
   data,
   streak,
@@ -33,23 +34,27 @@ const Main = ({
   };
 
   return (
-    <div className='main'>
+    <div className={hideIntro ? 'main' : 'main full'}>
       <Calendar handleConfigChange={handleConfigChange} {...calendarProps} />
       <HabitBox />
       <StatsBox {...statsBoxProps} />
-      <div className='arrow'>
-        <p>__________________</p>
-        <p>________________</p>
-        <p>______________</p>
-        <p>____________</p>
-        <p>__________</p>
-        <p>________</p>
-        <p>______</p>
-        <p>____</p>
-        <p>__</p>
-        <p>_</p>
-      </div>
-      <About />
+      {hideIntro ? null :
+        <>
+          <div className='arrow'>
+            <p>__________________</p>
+            <p>________________</p>
+            <p>______________</p>
+            <p>____________</p>
+            <p>__________</p>
+            <p>________</p>
+            <p>______</p>
+            <p>____</p>
+            <p>__</p>
+            <p>_</p>
+          </div>
+          <About />
+        </>
+      }
     </div>
   );
 };

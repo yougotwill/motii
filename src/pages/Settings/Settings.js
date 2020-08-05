@@ -5,16 +5,27 @@ import Donate from '../../components/Donate/Donate.js';
 
 import { version } from '../../../package.json';
 
-const Settings = ({ handleConfigChange }) => {
+const Settings = ({
+  handleConfigChange,
+  handleHideIntro,
+  hideIntro,
+  handlePositivity,
+  positivity
+}) => {
   const clearConfig = () => {
     // TODO confirmation
     localStorage.removeItem('config');
     window.location.replace('/');
   };
 
-  const handlePositivity = () => {
-    // TODO toggle prop in config
-    window.alert('Turning on positivity!');
+  const positivityHandler = () => {
+    handlePositivity(!positivity);
+    // TODO
+    window.alert('Toggling positivity!');
+  };
+
+  const hideIntroHandler= () => {
+    handleHideIntro(!hideIntro);
   };
 
   return (
@@ -27,7 +38,11 @@ const Settings = ({ handleConfigChange }) => {
         </div>
         <div className='setting'>
           <h3>Positive reinforcement</h3>
-          <button onClick={handlePositivity}>Turn On</button>
+          <input type='checkbox' name='positivity' value={positivity} checked={positivity} onChange={positivityHandler} />
+        </div>
+        <div className='setting'>
+          <h3>Hide Motii introduction</h3>
+          <input type='checkbox' name='hideIntro' value={hideIntro} checked={hideIntro} onChange={hideIntroHandler} />
         </div>
         <div className='setting'>
           <h3>See source code</h3>

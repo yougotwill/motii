@@ -21,6 +21,9 @@ const App = (props) => {
   const today = new Date();
 
   const [theme, setTheme] = useState('');
+  const [hideIntro, setHideIntro] = useState(false);
+  const [positivity, setPositivity] = useState(false);
+
   const [data, setData] = useState({});
   const [streak, setStreak] = useState(0);
   const [missed, setMissed] = useState(0);
@@ -35,18 +38,41 @@ const App = (props) => {
     setMissed(missedVal);
   };
 
+  const updateHideIntro = (value) => {
+    setHideIntro(value);
+    updateConfig('hideIntro', value);
+  };
+
+  const updatePositivity = (value) => {
+    setPositivity(value);
+    updateConfig('positivity', value);
+  };
+
   const loadConfig = () => {
     let config = JSON.parse(localStorage.getItem('config'));
     if (!config) { return {}; }
 
     // load properties
+
+    // misc
+    if (config.hideIntro !== null) {
+      setHideIntro(config.hideIntro);
+    }
+    if (config.positivity !== null) {
+      setPositivity(config.positivity);
+    }
+
+    // data
     config.data ? setData(config.data) : setData({});
     const streakVal = config.data ? Object.keys(config.data).filter((key) => {
         return Number(key.split('-')[1]) === today.getMonth();
       }).length : 0;
+
+    // stats
     updateStreak(streakVal);
     updateMissedDays(streakVal);
 
+    // theme
     setTheme(config.theme);
     document.querySelector('body').className = '';
     if (config.theme) {
@@ -58,6 +84,8 @@ const App = (props) => {
   const updateConfig = (property, value, clear=false) => {
     const config = {
       theme: theme,
+      hideIntro: hideIntro,
+      positivity: positivity,
       data: data
     };
 
@@ -91,10 +119,19 @@ const App = (props) => {
     handleConfigChange: updateConfig,
     updateStreak: setStreak,
     updateMissedDays: updateMissedDays,
+    hideIntro: hideIntro,
     today: today,
     data: data,
     streak: streak,
     missed: missed
+  };
+
+  const settingsProps = {
+    handleConfigChange: updateConfig,
+    handleHideIntro: updateHideIntro,
+    hideIntro: hideIntro,
+    handlePositivity: updatePositivity,
+    positivity: positivity
   };
 
   useEffect(() => {
@@ -117,7 +154,7 @@ const App = (props) => {
           </Route>
           <Route path='/settings'>
             <>
-              <Settings handleConfigChange={updateConfig} />
+              <Settings {...settingsProps} />
               <Footer />
             </>
           </Route>

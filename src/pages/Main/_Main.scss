@@ -1,5 +1,7 @@
 .main {
-  min-height: 756px;
+  &.full {
+    min-height: 756px;
+  }
   .arrow {
     text-align: center;
     p {
