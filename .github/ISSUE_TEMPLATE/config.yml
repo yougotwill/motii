@@ -1,4 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Don't have GitHub?
-    about: Please send an email to yougotwill94@gmail.com instead.
+  - name: Are you not signed up for GitHub?
+    url:  https://yougotwill.github.io
+    about: Please feel free to contact the developer directly.
