@@ -8,8 +8,8 @@ import { version } from '../../../package.json';
 const Settings = ({
   handleConfigChange,
   handleHideIntro,
-  hideIntro,
   handlePositivity,
+  hideIntro,
   positivity
 }) => {
   const clearConfig = () => {

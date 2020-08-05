@@ -48,45 +48,49 @@ const App = (props) => {
     updateConfig('positivity', value);
   };
 
-  const loadConfig = () => {
-    let config = JSON.parse(localStorage.getItem('config'));
+  const updateSettings = (property, value) => {
+    if (value !== null) {
+      switch (property) {
+        case 'hideIntro':
+          setHideIntro(value);
+          break;
+        case 'positivity':
+          setPositivity(value);
+          break;
+        case 'theme':
+          setTheme(value);
+          document.querySelector('body').className = value;
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  const loadAppData = (existingConfig) => {
+    let config = existingConfig ? existingConfig : JSON.parse(localStorage.getItem('config'));
     if (!config) { return {}; }
 
-    // load properties
-
-    // misc
-    if (config.hideIntro !== null) {
-      setHideIntro(config.hideIntro);
-    }
-    if (config.positivity !== null) {
-      setPositivity(config.positivity);
-    }
-
-    // data
     config.data ? setData(config.data) : setData({});
     const streakVal = config.data ? Object.keys(config.data).filter((key) => {
         return Number(key.split('-')[1]) === today.getMonth();
       }).length : 0;
-
-    // stats
     updateStreak(streakVal);
     updateMissedDays(streakVal);
 
-    // theme
-    setTheme(config.theme);
-    document.querySelector('body').className = '';
-    if (config.theme) {
-      document.querySelector('body').classList.add(config.theme);
-    }
+    updateSettings('hideIntro', config.hideIntro);
+    updateSettings('positivity', config.positivity);
+    updateSettings('theme', config.theme);
+
     return config;
   };
 
   const updateConfig = (property, value, clear=false) => {
     const config = {
-      theme: theme,
-      hideIntro: hideIntro,
-      positivity: positivity,
-      data: data
+      data,
+      theme,
+      hideIntro,
+      positivity
     };
 
     const props = property.split('.');
@@ -109,8 +113,9 @@ const App = (props) => {
         config[property] = value;
       }
     }
+
     localStorage.setItem('config', JSON.stringify(config));
-    return loadConfig();
+    return loadAppData(config);
   };
 
   const HeaderWithRouter = withRouter(Header);
@@ -119,23 +124,24 @@ const App = (props) => {
     handleConfigChange: updateConfig,
     updateStreak: setStreak,
     updateMissedDays: updateMissedDays,
-    hideIntro: hideIntro,
-    today: today,
-    data: data,
-    streak: streak,
-    missed: missed
+    hideIntro,
+    today,
+    data,
+    streak,
+    missed
   };
 
   const settingsProps = {
     handleConfigChange: updateConfig,
     handleHideIntro: updateHideIntro,
-    hideIntro: hideIntro,
     handlePositivity: updatePositivity,
-    positivity: positivity
+    hideIntro,
+    positivity
   };
 
   useEffect(() => {
-    loadConfig();
+    loadAppData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
