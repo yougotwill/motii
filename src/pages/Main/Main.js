@@ -2,22 +2,19 @@
 import React from 'react';
 
 import Calendar from '../../components/Calendar/Calendar.js';
-import Header from '../../components/Header/Header.js';
 import HabitBox from '../../components/HabitBox/HabitBox.js';
 import StatsBox from '../../components/StatsBox/StatsBox.js';
 import About from '../../components/About/About.js';
-import Footer from '../../components/Footer/Footer.js';
 
 const Main = ({
-  handleRouteChange,
   handleConfigChange,
   updateStreak,
   updateMissedDays,
+  hideIntro,
   today,
   data,
   streak,
-  missed,
-  theme
+  missed
 }) => {
   const habit = 'Read Harry Potter'; // TODO Fix logic
 
@@ -37,25 +34,27 @@ const Main = ({
   };
 
   return (
-    <div className='main'>
-      <Header handleRouteChange={handleRouteChange} handleConfigChange={handleConfigChange} theme={theme} />
+    <div className={hideIntro ? 'main' : 'main full'}>
       <Calendar handleConfigChange={handleConfigChange} {...calendarProps} />
       <HabitBox />
       <StatsBox {...statsBoxProps} />
-      <div className='arrow'>
-        <p>__________________</p>
-        <p>________________</p>
-        <p>______________</p>
-        <p>____________</p>
-        <p>__________</p>
-        <p>________</p>
-        <p>______</p>
-        <p>____</p>
-        <p>__</p>
-        <p>_</p>
-      </div>
-      <About />
-      <Footer />
+      {hideIntro ? null :
+        <>
+          <div className='arrow'>
+            <p>__________________</p>
+            <p>________________</p>
+            <p>______________</p>
+            <p>____________</p>
+            <p>__________</p>
+            <p>________</p>
+            <p>______</p>
+            <p>____</p>
+            <p>__</p>
+            <p>_</p>
+          </div>
+          <About />
+        </>
+      }
     </div>
   );
 };

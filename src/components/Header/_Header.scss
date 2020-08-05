@@ -9,15 +9,30 @@
     margin: 0.9rem 0;
     .account {
       display: inline;
-      padding-right: 1.5rem;
+      padding-right: 3.6rem;
       a {
-        margin: 0 0.75rem;
+        margin-right: 0.75rem;
       }
     }
-    .theme {
+    span {
       font-size: 1.3rem;
       position: absolute;
+      top: -3px;
+    }
+    .theme-toggle {
+      right: 36px;
+    }
+    .settings-toggle {
       right: 0;
+    }
+  }
+  @include screen($tablet) {
+    .options {
+      .account {
+        a {
+          margin-right: 1rem;
+        }
+      }
     }
   }
 }

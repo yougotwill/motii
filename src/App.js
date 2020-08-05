@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  withRouter
+} from 'react-router-dom';
 
 import './styles/App.scss';
 
 import Login from './pages/Login/Login.js';
 import Signup from './pages/Signup/Signup.js';
 import Main from './pages/Main/Main.js';
+import Privacy from './pages/Privacy/Privacy.js';
+import Settings from './pages/Settings/Settings.js';
+
+import Header from './components/Header/Header.js';
+import Footer from './components/Footer/Footer.js';
 
 const App = (props) => {
   const today = new Date();
 
-  const [route, setRoute] = useState();
   const [theme, setTheme] = useState('');
+  const [hideIntro, setHideIntro] = useState(false);
+  const [positivity, setPositivity] = useState(false);
+
   const [data, setData] = useState({});
   const [streak, setStreak] = useState(0);
   const [missed, setMissed] = useState(0);
@@ -25,11 +38,39 @@ const App = (props) => {
     setMissed(missedVal);
   };
 
-  const loadConfig = () => {
-    let config = JSON.parse(localStorage.getItem('config'));
+  const updateHideIntro = (value) => {
+    setHideIntro(value);
+    updateConfig('hideIntro', value);
+  };
+
+  const updatePositivity = (value) => {
+    setPositivity(value);
+    updateConfig('positivity', value);
+  };
+
+  const updateSettings = (property, value) => {
+    if (value !== null) {
+      switch (property) {
+        case 'hideIntro':
+          setHideIntro(value);
+          break;
+        case 'positivity':
+          setPositivity(value);
+          break;
+        case 'theme':
+          setTheme(value);
+          document.querySelector('body').className = value;
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  const loadAppData = (existingConfig) => {
+    let config = existingConfig ? existingConfig : JSON.parse(localStorage.getItem('config'));
     if (!config) { return {}; }
 
-    // load properties
     config.data ? setData(config.data) : setData({});
     const streakVal = config.data ? Object.keys(config.data).filter((key) => {
         return Number(key.split('-')[1]) === today.getMonth();
@@ -37,18 +78,19 @@ const App = (props) => {
     updateStreak(streakVal);
     updateMissedDays(streakVal);
 
-    setTheme(config.theme);
-    document.querySelector('body').className = '';
-    if (config.theme) {
-      document.querySelector('body').classList.add(config.theme);
-    }
+    updateSettings('hideIntro', config.hideIntro);
+    updateSettings('positivity', config.positivity);
+    updateSettings('theme', config.theme);
+
     return config;
   };
 
   const updateConfig = (property, value, clear=false) => {
     const config = {
-      theme: theme,
-      data: data
+      data,
+      theme,
+      hideIntro,
+      positivity
     };
 
     const props = property.split('.');
@@ -71,39 +113,66 @@ const App = (props) => {
         config[property] = value;
       }
     }
+
     localStorage.setItem('config', JSON.stringify(config));
-    return loadConfig();
+    return loadAppData(config);
   };
 
+  const HeaderWithRouter = withRouter(Header);
+
   const mainProps = {
-    handleRouteChange: setRoute,
     handleConfigChange: updateConfig,
     updateStreak: setStreak,
     updateMissedDays: updateMissedDays,
-    today: today,
-    data: data,
-    streak: streak,
-    missed: missed,
-    theme: theme
+    hideIntro,
+    today,
+    data,
+    streak,
+    missed
+  };
+
+  const settingsProps = {
+    handleConfigChange: updateConfig,
+    handleHideIntro: updateHideIntro,
+    handlePositivity: updatePositivity,
+    hideIntro,
+    positivity
   };
 
   useEffect(() => {
-    loadConfig();
+    loadAppData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className='app'>
-      {(() => {
-        switch(route) {
-          case 'login':
-            return <Login />;
-          case 'signup':
-            return <Signup />;
-          default:
-            return <Main {...mainProps} />;
-        }
-      })()}
-    </div>
+    <BrowserRouter>
+      <div className='app'>
+        <HeaderWithRouter handleConfigChange={updateConfig} theme={theme} />
+        <Switch>
+          <Route path='/login'>
+            <Login />
+          </Route>
+          <Route path='/signup'>
+            <Signup />
+          </Route>
+          <Route path='/privacy'>
+            <Privacy />
+          </Route>
+          <Route path='/settings'>
+            <>
+              <Settings {...settingsProps} />
+              <Footer />
+            </>
+          </Route>
+          <Route path='/'>
+            <>
+              <Main {...mainProps} />
+              <Footer />
+            </>
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 };
 
