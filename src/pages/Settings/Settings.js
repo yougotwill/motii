@@ -33,10 +33,6 @@ const Settings = ({
       <div className='panel'>
         <h2>Settings</h2>
         <div className='setting'>
-          <h3>Clear local data</h3>
-          <button onClick={clearConfig}>Clear Data</button>
-        </div>
-        <div className='setting'>
           <h3>Positive reinforcement</h3>
           <input type='checkbox' name='positivity' value={positivity} checked={positivity} onChange={positivityHandler} />
         </div>
@@ -45,18 +41,22 @@ const Settings = ({
           <input type='checkbox' name='hideIntro' value={hideIntro} checked={hideIntro} onChange={hideIntroHandler} />
         </div>
         <div className='setting'>
-          <h3>See source code</h3>
-          <a href='https://github.com/yougotwill/motii' target='_blank' rel='noopener noreferrer'><button>View Code</button></a>
-        </div>
-    		<Donate />
-        <div className='setting'>
           <h3>Want to request a feature?</h3>
-          <a href='https://github.com/yougotwill/motii/issues/new?template=feature_request.md' target='_blank' rel='noopener noreferrer'><button>Feature request</button></a>
+          <a href='https://github.com/yougotwill/motii/issues/new?template=feature_request.md' target='_blank' rel='noopener noreferrer'><button>Feature Request</button></a>
         </div>
         <div className='setting'>
           <h3>Found a problem or bug?</h3>
-          <a href='https://github.com/yougotwill/motii/issues/new?template=bug_report.md' target='_blank' rel='noopener noreferrer'><button>Report issue</button></a>
+          <a href='https://github.com/yougotwill/motii/issues/new?template=bug_report.md' target='_blank' rel='noopener noreferrer'><button>Report Issue</button></a>
         </div>
+        <div className='setting'>
+          <h3>See source code</h3>
+          <a href='https://github.com/yougotwill/motii' target='_blank' rel='noopener noreferrer'><button>View Code</button></a>
+        </div>
+        <div className='setting'>
+          <h3>Clear app data</h3>
+          <button onClick={clearConfig}>Clear Data</button>
+        </div>
+    		<Donate />
         <p className='version'>v{version}</p>
       </div>
     </div>
