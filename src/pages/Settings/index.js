@@ -1,7 +1,7 @@
 // TODO move into modal
 import React from 'react';
 
-import Donate from '../../components/Donate/Donate.js';
+import Donate from '../../components/Donate';
 
 import { version } from '../../../package.json';
 

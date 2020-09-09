@@ -5,17 +5,17 @@ import {
   Route,
   withRouter
 } from 'react-router-dom';
-
+  
 import './styles/App.scss';
 
-import Login from './pages/Login/Login.js';
-import Signup from './pages/Signup/Signup.js';
-import Main from './pages/Main/Main.js';
-import Privacy from './pages/Privacy/Privacy.js';
-import Settings from './pages/Settings/Settings.js';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Main from './pages/Main';
+import Privacy from './pages/Privacy';
+import Settings from './pages/Settings';
 
-import Header from './components/Header/Header.js';
-import Footer from './components/Footer/Footer.js';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 const App = (props) => {
   const today = new Date();

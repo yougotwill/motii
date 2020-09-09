@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import Editable from '../Editable/Editable.js';
+import Editable from '../Editable';
 
 const HabitBox = ({ habit, setHabit }) => {
   const inputRef = useRef();

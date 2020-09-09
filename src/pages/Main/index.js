@@ -1,10 +1,10 @@
 // Design: https://www.figma.com/file/PrWnDYzLv8PPxdlV5GauiD/MainScreen?node-id=0%3A1
 import React, { useState } from 'react';
 
-import Calendar from '../../components/Calendar/Calendar.js';
-import HabitBox from '../../components/HabitBox/HabitBox.js';
-import StatsBox from '../../components/StatsBox/StatsBox.js';
-import About from '../../components/About/About.js';
+import Calendar from '../../components/Calendar';
+import HabitBox from '../../components/HabitBox';
+import StatsBox from '../../components/StatsBox';
+import About from '../../components/About';
 
 const Main = ({
   handleConfigChange,
