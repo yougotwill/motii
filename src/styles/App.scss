@@ -17,6 +17,9 @@ body {
     a, .arrow {
       color: #F8FAFB;
     }
+    h1 {
+      color: #EB196D;
+    }
     .border {
       border-color: #EB196D;
     }
@@ -35,6 +38,7 @@ body {
 h1 {
   margin: 0.25rem auto 0;
   text-align: left;
+  color: black;
 }
 
 a {
@@ -45,6 +49,10 @@ a {
 input {
   background: #F5F8FF;
   color: currentColor;
+}
+
+button, input {
+  font-weight: 500;
 }
 
 legend {
@@ -61,6 +69,7 @@ legend {
 @import '../pages/Login/_Login.scss';
 @import '../pages/Signup/_Signup.scss';
 @import '../pages/Main/_Main.scss';
+@import '../pages/Settings/_Settings.scss';
 
 // components
 @import '../components/Calendar/_Calendar.scss';
@@ -69,8 +78,13 @@ legend {
 @import '../components/StatsBox/_StatsBox.scss';
 @import '../components/About/_About.scss';
 @import '../components/Footer/_Footer.scss';
+@import '../components/Donate/_Donate.scss';
 
 @include screen($tablet) {
+  // https://css-tricks.com/eliminate-jumps-in-horizontal-centering-by-forcing-a-scroll-bar/
+  html {
+    overflow-y: scroll;
+  }
   body {
     max-width: $tablet;
     margin: 0 auto;

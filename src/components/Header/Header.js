@@ -1,20 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Header = ({ handleRouteChange, handleConfigChange, theme }) => {
+const Header = ({location, handleConfigChange, theme }) => {
   const updateTheme = (themeName) => {
     handleConfigChange('theme', themeName);
   };
 
   return (
     <div className='header'>
-      <h1>Motii</h1>
-      <div className='options'>
-        <div className='account'>
-          <a onClick={() => handleRouteChange('login')}>Login</a>
-          <a onClick={() => handleRouteChange('signup')}>Sign up</a>
+      <Link to='/'>
+        <h1>Motii</h1>
+      </Link>
+      { location.pathname === '/' || location.pathname === '/settings' ?
+        <div className='options'>
+          <div className='account'>
+            <Link to='/login'>Login</Link>
+            <Link to='/signup'>Sign Up</Link>
+          </div>
+          <span className='theme-toggle' role='img' aria-label={theme ? 'sun' : 'sunglasses'} onClick={() => updateTheme(theme ? '' : 'dark')}>{theme ? '☀️' : '😎'}</span>
+          <Link to={location.pathname !== '/settings' ? '/settings' : '/'}><span className='settings-toggle' role='img' aria-label={'gear'}>{location.pathname !== '/settings' ? '⚙️' : '🗓️'}</span></Link>
         </div>
-        <span className='theme' role='img' aria-label={theme ? 'sun' : 'sunglasses'} onClick={() => updateTheme(theme ? '' : 'dark')}>{theme ? '☀️' : '😎'}</span>
-      </div>
+      : null}
     </div>
   );
 };

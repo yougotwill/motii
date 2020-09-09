@@ -2,17 +2,20 @@ import React from 'react';
 
 const Signup = () => {
   return (
-    <form className='signup'>
-    <h1>Motii</h1>
-    <fieldset className='border'>
-      <legend>Sign Up</legend>
-      <label for='email'>Email</label><br />
-      <input type='text' name='email' /><br />
-      <label for='password'>Password</label><br />
-      <input type='password' name='password' /><br />
-      <input type='submit' value='Sign Up' />
-   </fieldset>
-  </form>
+    <div className='signup'>
+      <form>
+        <fieldset className='border'>
+          <legend>Sign Up</legend>
+          <div className='details'>
+            <label htmlFor='email'>Email</label>
+            <input type='text' name='email' />
+            <label htmlFor='password'>Password</label>
+            <input type='password' name='password' />
+            <input type='submit' value='Sign Up' />
+          </div>
+        </fieldset>
+      </form>
+    </div>
   );
 };
 

@@ -1,0 +1,32 @@
+.donate {
+  margin: 1rem auto;
+  p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 3rem auto 2rem;
+  }
+  a {
+    margin: 0 auto;
+    svg {
+      width: 24px;
+      height: 28px;
+      margin-right: 0;
+    }
+  }
+  @include screen($tablet) {
+    h3 {
+      margin-right: 1rem;
+    }
+    a, h3 {
+      display: inline;
+    }
+    .option {
+      margin-bottom: 0.5rem;
+    }
+    .social-button {
+      svg {
+        vertical-align: middle;
+      }
+    }
+  }
+}
