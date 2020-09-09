@@ -1,8 +1,8 @@
-# Motii
+# motii
 
 *the motivational calendar*
 
-Motii is a calendar that helps people motivate themselves when starting new habits.
+motii is a calendar that helps people motivate themselves when starting new habits.
 
 ***It’s not a habit forming, it’s habit rewarding.***
 

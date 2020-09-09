@@ -11,9 +11,6 @@ body {
   &.dark {
     background: #1A1F23;
     color: #EB196D;
-    input {
-      background: #1A1F23;
-    }
     a, .arrow {
       color: #F8FAFB;
     }
@@ -48,7 +45,6 @@ a {
 
 input {
   background: #F5F8FF;
-  color: currentColor;
 }
 
 button, input {
