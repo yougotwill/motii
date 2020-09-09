@@ -62,9 +62,9 @@ const Calendar = ({
   return (
     <div className='calendar border'>
       <div className='header'>
-        <button onClick={() => { setDate(new Date(year, month - 1, day)); }}>🡐</button>
+        <button onClick={() => { setDate(new Date(year, month - 1, day)); }}>&larr;</button>
         <div className='title'>{MONTHS[month]} {year}</div>
-        <button onClick={() => { setDate(new Date(year, month + 1, day)); }}>🡒</button>
+        <button onClick={() => { setDate(new Date(year, month + 1, day)); }}>&rarr;</button>
       </div>
       <div className='content'>
         {DAYS_OF_WEEK.map((d, index) => {
