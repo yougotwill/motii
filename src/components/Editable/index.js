@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
+import Modal from '../Modal';
+
 const Editable = ({
   text,
   placeholder,
   type,
   childRef,
+  yesHandler,
+  noHandler,
+  handleModal,
   children,
   ...props
 }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false); // toggle label / inputbox
   const keyDownHandler = (event, type) => {
     const { key } = event;
@@ -16,6 +22,7 @@ const Editable = ({
     const allKeys = [...keys, enterKey];
     if ((type === 'textarea' && keys.indexOf(key) > -1) || (type !== 'textarea' && allKeys.indexOf(key) > -1)) {
       setIsEditing(false);
+      handleModal(isModalOpen, setModalOpen);
     }
   };
 
@@ -29,7 +36,7 @@ const Editable = ({
     <section {...props}>
     {isEditing ? (
       <div
-        onBlur={() => { setIsEditing(false); }}
+        onBlur={() => { setIsEditing(false); handleModal(isModalOpen, setModalOpen); }}
         onKeyDown={(event) => { keyDownHandler(event, type); }}
       >
         {children}
@@ -41,6 +48,13 @@ const Editable = ({
         </span>
       </div>
     )}
+    <Modal isOpen={isModalOpen}>
+      <div className='modal-content'>
+        <button onClick={() => { noHandler(); handleModal(isModalOpen, setModalOpen); }}>Close</button>
+        <button onClick={() => { yesHandler(); handleModal(isModalOpen, setModalOpen); }}>Yes</button>
+        <button onClick={() => { noHandler(); handleModal(isModalOpen, setModalOpen); }}>No</button>
+      </div>
+    </Modal>
     </section>
   );
 };

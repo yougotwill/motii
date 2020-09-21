@@ -20,6 +20,11 @@ import Footer from './components/Footer';
 const App = (props) => {
   const today = new Date();
 
+  const toggleModal = (modalState, modalHandler) => {
+    console.log('show modal', !modalState);
+    modalHandler(!modalState);
+  };
+
   const [theme, setTheme] = useState('');
   const [hideIntro, setHideIntro] = useState(false);
   const [positivity, setPositivity] = useState(false);
@@ -121,6 +126,7 @@ const App = (props) => {
   const HeaderWithRouter = withRouter(Header);
 
   const mainProps = {
+    handleModal: toggleModal,
     handleConfigChange: updateConfig,
     updateStreak: setStreak,
     updateMissedDays: updateMissedDays,
