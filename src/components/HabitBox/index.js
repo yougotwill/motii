@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
 
 import Editable from '../Editable';
+import Modal from '../Modal';
 
 const HabitBox = ({ habit, setHabit, handleModal }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
   const [text, setText] = useState(habit);
   const inputRef = useRef();
 
@@ -12,6 +14,7 @@ const HabitBox = ({ habit, setHabit, handleModal }) => {
     } else {
       setText(habit);
     }
+    handleModal(isModalOpen, setModalOpen);
   };
 
   return (
@@ -23,8 +26,8 @@ const HabitBox = ({ habit, setHabit, handleModal }) => {
           placeholder='Enter your habit here'
           type='input'
           childRef={inputRef}
-          yesHandler={() => { changeHandler(true); }}
-          noHandler={() => { changeHandler(false); }}
+          isModalOpen={isModalOpen}
+          setModalOpen={setModalOpen}
           handleModal={handleModal}
         >
           <input
@@ -37,6 +40,12 @@ const HabitBox = ({ habit, setHabit, handleModal }) => {
           />
         </Editable>
       </fieldset>
+      <Modal isOpen={isModalOpen} setModalOpen={setModalOpen} closeHandler={() => { changeHandler(false); }}>
+        <h3>Changing habits?</h3>
+        <p>This will reset your streak to 0.</p>
+        <button onClick={() => { changeHandler(true); }}>Yes</button>
+        <button onClick={() => { changeHandler(false); }}>No</button>
+      </Modal>
     </form>
   );
 };

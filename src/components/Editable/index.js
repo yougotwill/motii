@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-import Modal from '../Modal';
-
 const Editable = ({
   text,
   placeholder,
   type,
   childRef,
-  yesHandler,
-  noHandler,
+  isModalOpen,
+  setModalOpen,
   handleModal,
   children,
   ...props
 }) => {
-  const [isModalOpen, setModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false); // toggle label / inputbox
   const keyDownHandler = (event, type) => {
     const { key } = event;
@@ -48,11 +45,6 @@ const Editable = ({
         </span>
       </div>
     )}
-    <Modal isOpen={isModalOpen} setModalOpen={setModalOpen} closeHandler={() => { noHandler(); handleModal(isModalOpen, setModalOpen); }}>
-      <p>Make changes?</p>
-      <button onClick={() => { yesHandler(); handleModal(isModalOpen, setModalOpen); }}>Yes</button>
-      <button onClick={() => { noHandler(); handleModal(isModalOpen, setModalOpen); }}>No</button>
-    </Modal>
     </section>
   );
 };

@@ -47,7 +47,7 @@ const Calendar = ({
     } else {
       if (habit.length > 0) {
         handleConfigChange(`data.${dateString}`, habit);
-        value = 1; 
+        value = 1;
       } else {
         handleModal(isModalOpen, setModalOpen);
       }
@@ -102,7 +102,7 @@ const Calendar = ({
           })}
       </div>
       <Modal isOpen={isModalOpen} closeHandler={() => { handleModal(isModalOpen, setModalOpen); }}>
-        <p>Please enter a habit!</p>
+        <h4>Please fill in your habit.</h4>
       </Modal>
     </div>
   );
