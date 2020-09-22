@@ -1,10 +1,14 @@
-# motii
+# motii (under development)
 
 *the motivational calendar*
 
-motii is a calendar that helps people motivate themselves when starting new habits.
+motii is a calendar that helps people motivate themselves when starting new habits using encouragement and positive reinforcement.
 
-***It’s not a habit forming, it’s habit rewarding.***
+***It’s not a habit forming, it's habit rewarding.***
+
+## Screenshots (more coming soon!)
+
+<img src="assets/screenshot.png" alt="screenshot" style="zoom:45%;" />
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -74,7 +78,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-## Resources
-
--[How to Create a Simple React Calendar with Styled Components](https://dev.to/zhiyueyi/how-to-create-a-simple-react-calendar-with-styled-component-42n6)
