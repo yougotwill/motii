@@ -42,7 +42,7 @@ const HabitBox = ({ habit, setHabit, handleModal }) => {
       </fieldset>
       <Modal isOpen={isModalOpen} setModalOpen={setModalOpen} closeHandler={() => { changeHandler(false); }}>
         <h3>Changing habits?</h3>
-        <p>This will reset your streak to 0.</p>
+        <p>This will clear your streak</p>
         <button onClick={() => { changeHandler(true); }}>Yes</button>
         <button onClick={() => { changeHandler(false); }}>No</button>
       </Modal>
