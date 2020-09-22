@@ -101,12 +101,9 @@ const Calendar = ({
             );
           })}
       </div>
-      <Modal isOpen={isModalOpen}>
-      <div className='modal-content'>
-        <button onClick={() => { handleModal(isModalOpen, setModalOpen); }}>Close</button>
+      <Modal isOpen={isModalOpen} closeHandler={() => { handleModal(isModalOpen, setModalOpen); }}>
         <p>Please enter a habit!</p>
-      </div>
-    </Modal>
+      </Modal>
     </div>
   );
 };

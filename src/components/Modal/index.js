@@ -3,9 +3,9 @@ import { createPortal } from 'react-dom';
 
 const modalRoot = document.getElementById('modal-root');
 
-const Modal = ({ isOpen, children }) => {
+const Modal = ({ isOpen, closeHandler, children }) => {
   const modalContainer = document.createElement('div');
-
+  // TODO check for multiple modals open
   useEffect(() => {
     // mounted
     modalRoot.appendChild(modalContainer);
@@ -19,7 +19,14 @@ const Modal = ({ isOpen, children }) => {
   return (
     isOpen && createPortal(
       <div className='modal-container'>
-        {children}
+        <div className='modal-box'>
+          <div className='modal-header clearfix'>
+            <span onClick={closeHandler}>x</span>
+          </div>
+          <div className='modal-content'>
+            {children}
+          </div>
+        </div>
       </div>,
       modalContainer
     )

@@ -48,12 +48,10 @@ const Editable = ({
         </span>
       </div>
     )}
-    <Modal isOpen={isModalOpen}>
-      <div className='modal-content'>
-        <button onClick={() => { noHandler(); handleModal(isModalOpen, setModalOpen); }}>Close</button>
-        <button onClick={() => { yesHandler(); handleModal(isModalOpen, setModalOpen); }}>Yes</button>
-        <button onClick={() => { noHandler(); handleModal(isModalOpen, setModalOpen); }}>No</button>
-      </div>
+    <Modal isOpen={isModalOpen} setModalOpen={setModalOpen} closeHandler={() => { noHandler(); handleModal(isModalOpen, setModalOpen); }}>
+      <p>Make changes?</p>
+      <button onClick={() => { yesHandler(); handleModal(isModalOpen, setModalOpen); }}>Yes</button>
+      <button onClick={() => { noHandler(); handleModal(isModalOpen, setModalOpen); }}>No</button>
     </Modal>
     </section>
   );

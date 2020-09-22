@@ -20,10 +20,17 @@ body {
     .border {
       border-color: #EB196D;
     }
-    .calendar .content .day.today {
+    .calendar .content .day.today, .modal-container .modal-box {
       background-color: #333333;
     }
   }
+}
+
+// https://www.w3schools.com/howto/howto_css_clearfix.asp
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 .border {

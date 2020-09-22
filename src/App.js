@@ -5,7 +5,7 @@ import {
   Route,
   withRouter
 } from 'react-router-dom';
-  
+
 import './styles/App.scss';
 
 import Login from './pages/Login';
@@ -21,7 +21,6 @@ const App = (props) => {
   const today = new Date();
 
   const toggleModal = (modalState, modalHandler) => {
-    console.log('show modal', !modalState);
     modalHandler(!modalState);
   };
 

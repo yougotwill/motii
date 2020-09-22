@@ -1,11 +1,64 @@
 .modal-container {
-  position: absolute;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 50;
+  position: fixed;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  padding: 100px;
-  background-color: rgba(0,0,0,0.6);
-  .modal-content {
+  overflow: hidden;
+  .modal-box {
+    background-color: white;
+    z-index: 50;
+    min-width: 250px;
+    max-width: 300px;
+    width: 66.666667%;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    position: absolute;
+    top: 25%;
+    right: 0;
+    // bottom: 0; // height = content
+    left: 0;
+    overflow-y: auto;
+    margin: 2rem auto;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .modal-header {
+      position: relative;
+      width: 100%;
+      span {
+        float: right;
+        margin-right: 0.75rem;
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+    }
+    .modal-content {
+      padding-bottom: 2rem;
+      width: 100%;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      button {
+        margin: auto 1rem;
+        min-width: 50px;
+      }
+    }
+    @include screen($tablet) {
+      width: 33.333334%;
+      .modal-header {
+        span {
+          font-size: 2rem;
+        }
+      }
+      .modal-content {
+        font-size: 1.5rem;
+      }
+    }
   }
 }
