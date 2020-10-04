@@ -3,7 +3,7 @@ import React from 'react';
 const Login = () => {
   return (
     <div className='login'>
-      <h2 className='banner'>Under construction! 🚧</h2>
+      <h2 className='banner'>Under construction! <span role='img' aria-label='road block'>🚧</span></h2>
       <form className='disabled'>
         <fieldset className='border'>
           <legend>Login</legend>
