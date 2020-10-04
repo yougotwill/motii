@@ -1,4 +1,4 @@
-# motii (under development)
+# motii (🚧 under construction 🚧)
 
 *the motivational calendar*
 

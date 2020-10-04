@@ -37,6 +37,7 @@ const Main = ({
 
   return (
     <div className={hideIntro ? 'main' : 'main full'}>
+      <h2 className='banner'>Under construction! 🚧</h2>
       <Calendar handleConfigChange={handleConfigChange} {...calendarProps} />
       <HabitBox habit={habit} setHabit={setHabit} handleModal={handleModal} />
       <StatsBox {...statsBoxProps} />

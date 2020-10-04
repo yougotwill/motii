@@ -3,7 +3,8 @@ import React from 'react';
 const Signup = () => {
   return (
     <div className='signup'>
-      <form>
+      <h2 className='banner'>Under construction! 🚧</h2>
+      <form className='disabled'>
         <fieldset className='border'>
           <legend>Sign Up</legend>
           <div className='details'>

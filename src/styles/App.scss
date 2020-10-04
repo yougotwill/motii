@@ -33,10 +33,23 @@ body {
   display: table;
 }
 
+.banner {
+  text-align: center;
+  padding: 0.25rem;
+  border: 1px solid red;
+  background-color: rgba($color: grey, $alpha: 0.15);
+  z-index: 50;
+}
+
 .border {
   border-width: 1px;
   border-style: solid;
   border-color: black;
+}
+
+.disabled {
+  pointer-events:none;
+  opacity: 0.5;
 }
 
 h1 {
