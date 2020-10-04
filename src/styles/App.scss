@@ -20,10 +20,17 @@ body {
     .border {
       border-color: #EB196D;
     }
-    .calendar .content .day.today {
+    .calendar .content .day.today, .modal-container .modal-box {
       background-color: #333333;
     }
   }
+}
+
+// https://www.w3schools.com/howto/howto_css_clearfix.asp
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 .border {
@@ -75,6 +82,7 @@ legend {
 @import '../components/About/_About.scss';
 @import '../components/Footer/_Footer.scss';
 @import '../components/Donate/_Donate.scss';
+@import '../components/Modal/_Modal.scss';
 
 @include screen($tablet) {
   // https://css-tricks.com/eliminate-jumps-in-horizontal-centering-by-forcing-a-scroll-bar/

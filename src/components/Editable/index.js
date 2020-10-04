@@ -5,6 +5,9 @@ const Editable = ({
   placeholder,
   type,
   childRef,
+  isModalOpen,
+  setModalOpen,
+  handleModal,
   children,
   ...props
 }) => {
@@ -16,6 +19,7 @@ const Editable = ({
     const allKeys = [...keys, enterKey];
     if ((type === 'textarea' && keys.indexOf(key) > -1) || (type !== 'textarea' && allKeys.indexOf(key) > -1)) {
       setIsEditing(false);
+      handleModal(isModalOpen, setModalOpen);
     }
   };
 
@@ -29,7 +33,7 @@ const Editable = ({
     <section {...props}>
     {isEditing ? (
       <div
-        onBlur={() => { setIsEditing(false); }}
+        onBlur={() => { setIsEditing(false); handleModal(isModalOpen, setModalOpen); }}
         onKeyDown={(event) => { keyDownHandler(event, type); }}
       >
         {children}

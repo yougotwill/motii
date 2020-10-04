@@ -9,5 +9,6 @@ footer {
   }
   @include screen($tablet) {
     text-align: right;
+    margin: 1rem 0 2rem;
   }
 }

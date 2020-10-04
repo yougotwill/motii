@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import { MONTHS, DAYS_OF_WEEK, getNumDays } from '../../shared/datetime';
 
+import Modal from '../Modal';
+
 const Calendar = ({
   handleConfigChange,
   data,
@@ -9,8 +11,11 @@ const Calendar = ({
   today,
   streak,
   updateStreak,
-  updateMissedDays
+  updateMissedDays,
+  handleModal
 }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
   const getStartDayOfMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
@@ -40,8 +45,12 @@ const Calendar = ({
       handleConfigChange(`data.${dateString}`, '', true);
       value = -1;
     } else {
-      handleConfigChange(`data.${dateString}`, habit);
-      value = 1;
+      if (habit.length > 0) {
+        handleConfigChange(`data.${dateString}`, habit);
+        value = 1;
+      } else {
+        handleModal(isModalOpen, setModalOpen);
+      }
     }
 
     event.target.classList.toggle('success');
@@ -92,6 +101,9 @@ const Calendar = ({
             );
           })}
       </div>
+      <Modal isOpen={isModalOpen} closeHandler={() => { handleModal(isModalOpen, setModalOpen); }}>
+        <h4>Please fill in your habit.</h4>
+      </Modal>
     </div>
   );
 };

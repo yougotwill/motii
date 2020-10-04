@@ -7,6 +7,7 @@ import StatsBox from '../../components/StatsBox';
 import About from '../../components/About';
 
 const Main = ({
+  handleModal,
   handleConfigChange,
   updateStreak,
   updateMissedDays,
@@ -16,7 +17,7 @@ const Main = ({
   streak,
   missed
 }) => {
-  const [habit, setHabit] = useState('Read Harry Potter');
+  const [habit, setHabit] = useState('');
 
   const calendarProps = {
     data,
@@ -24,7 +25,8 @@ const Main = ({
     today,
     streak,
     updateStreak,
-    updateMissedDays
+    updateMissedDays,
+    handleModal
   };
 
   const statsBoxProps = {
@@ -36,7 +38,7 @@ const Main = ({
   return (
     <div className={hideIntro ? 'main' : 'main full'}>
       <Calendar handleConfigChange={handleConfigChange} {...calendarProps} />
-      <HabitBox habit={habit} setHabit={setHabit} />
+      <HabitBox habit={habit} setHabit={setHabit} handleModal={handleModal} />
       <StatsBox {...statsBoxProps} />
       {hideIntro ? null :
         <>

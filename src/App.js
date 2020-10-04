@@ -5,7 +5,7 @@ import {
   Route,
   withRouter
 } from 'react-router-dom';
-  
+
 import './styles/App.scss';
 
 import Login from './pages/Login';
@@ -19,6 +19,10 @@ import Footer from './components/Footer';
 
 const App = (props) => {
   const today = new Date();
+
+  const toggleModal = (modalState, modalHandler) => {
+    modalHandler(!modalState);
+  };
 
   const [theme, setTheme] = useState('');
   const [hideIntro, setHideIntro] = useState(false);
@@ -121,6 +125,7 @@ const App = (props) => {
   const HeaderWithRouter = withRouter(Header);
 
   const mainProps = {
+    handleModal: toggleModal,
     handleConfigChange: updateConfig,
     updateStreak: setStreak,
     updateMissedDays: updateMissedDays,
