@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e801746f-aa9a-4c9a-8bdd-56904499cb47/deploy-status)](https://app.netlify.com/sites/motii/deploys)
+
 # motii (🚧 under construction 🚧)
 
 *the motivational calendar*
