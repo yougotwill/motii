@@ -80,6 +80,7 @@ legend {
 
 // mixins
 @import '../styles/mixins/screen.scss';
+@import '../styles/mixins/shake.scss';
 
 // pages
 @import '../pages/Login/_Login.scss';

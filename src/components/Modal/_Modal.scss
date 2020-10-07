@@ -52,10 +52,16 @@
         margin-top: 0.5rem;
         margin-bottom: 0;
       }
+      img {
+        width: 50%;
+      }
       p {
         font-size: 1rem;
         margin-bottom: 1.25rem;
       }
+    }
+    &.modal-shake {
+      @include shake(0.5s, 5);
     }
     @include screen($tablet) {
       width: 33.333334%;
