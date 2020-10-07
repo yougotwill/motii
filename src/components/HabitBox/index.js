@@ -1,21 +1,27 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useLayoutEffect, useRef } from 'react';
 
 import Editable from '../Editable';
 import Modal from '../Modal';
 
-const HabitBox = ({ habit, setHabit, handleModal }) => {
+const HabitBox = ({ habit, handleHabit, handleModal }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [text, setText] = useState(habit);
+  const [text, setText] = useState('');
   const inputRef = useRef();
 
   const changeHandler = (agree) => {
     if (agree) {
-      setHabit(text);
+      handleHabit(text);
     } else {
       setText(habit);
     }
     handleModal(isModalOpen, setModalOpen);
   };
+
+  useLayoutEffect(() => {
+    if (habit) {
+      setText(habit);
+    }
+  }, [habit]);
 
   return (
     <form className='habitbox'>
@@ -23,7 +29,7 @@ const HabitBox = ({ habit, setHabit, handleModal }) => {
         <legend>Habit</legend>
         <Editable
           text={text}
-          placeholder='Enter your habit here'
+          placeholder={'Enter your habit here'}
           type='input'
           childRef={inputRef}
           isModalOpen={isModalOpen}
@@ -34,7 +40,6 @@ const HabitBox = ({ habit, setHabit, handleModal }) => {
             ref={inputRef}
             type='text'
             name='habit'
-            placeholder='Enter your habit'
             value={text}
             onChange={(event) => { setText(event.target.value); }}
           />

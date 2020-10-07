@@ -41,7 +41,7 @@ const Editable = ({
     ) : (
       <div onClick={() => { setIsEditing(true); }}>
         <span>
-          {text || placeholder || 'Editable content'}
+          {text || placeholder || ''}
         </span>
       </div>
     )}

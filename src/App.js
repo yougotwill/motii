@@ -29,9 +29,15 @@ const App = (props) => {
   const [hideIntro, setHideIntro] = useState(false);
   const [positivity, setPositivity] = useState(false);
 
+  const [habit, setHabit] = useState('');
   const [data, setData] = useState({});
   const [streak, setStreak] = useState(0);
   const [missed, setMissed] = useState(0);
+
+  const updateHabit = (value) => {
+    setHabit(value);
+    updateConfig('habit', value);
+  }
 
   const updateStreak = (value) => {
     const streakVal = value > 0 ? value : 0;
@@ -77,6 +83,8 @@ const App = (props) => {
     if (!config) { return {}; }
 
     config.data ? setData(config.data) : setData({});
+    setHabit(config.habit);
+
     const streakVal = config.data ? Object.keys(config.data).filter((key) => {
         return Number(key.split('-')[1]) === today.getMonth();
       }).length : 0;
@@ -126,10 +134,12 @@ const App = (props) => {
   const HeaderWithRouter = withRouter(Header);
 
   const mainProps = {
+    handleHabit: updateHabit,
     handleModal: toggleModal,
     handleConfigChange: updateConfig,
     updateStreak: setStreak,
     updateMissedDays: updateMissedDays,
+    habit,
     hideIntro,
     today,
     data,

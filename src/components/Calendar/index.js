@@ -5,14 +5,14 @@ import { MONTHS, DAYS_OF_WEEK, getNumDays } from '../../shared/datetime';
 import Modal from '../Modal';
 
 const Calendar = ({
-  handleConfigChange,
   data,
   habit,
   today,
   streak,
   updateStreak,
   updateMissedDays,
-  handleModal
+  handleModal,
+  handleConfigChange,
 }) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -41,16 +41,18 @@ const Calendar = ({
 
     const dateString = `${year}-${month}-${event.target.innerText}`;
     let value = 0;
+    console.log('habit', habit);
+    if (!habit) {
+      handleModal(isModalOpen, setModalOpen);
+      return;
+    }
+
     if (data[dateString]) {
       handleConfigChange(`data.${dateString}`, '', true);
       value = -1;
     } else {
-      if (habit.length > 0) {
-        handleConfigChange(`data.${dateString}`, habit);
-        value = 1;
-      } else {
-        handleModal(isModalOpen, setModalOpen);
-      }
+      handleConfigChange(`data.${dateString}`, habit);
+      value = 1;
     }
 
     event.target.classList.toggle('success');
