@@ -17,6 +17,11 @@ body {
     h1 {
       color: #EB196D;
     }
+    textarea {
+      background-color: #333333;
+      color: white;
+      border-color: #EB196D;
+    }
     .border {
       border-color: #EB196D;
     }
@@ -96,6 +101,7 @@ legend {
 @import '../components/Footer/_Footer.scss';
 @import '../components/Donate/_Donate.scss';
 @import '../components/Modal/_Modal.scss';
+@import '../components/Share/_Share.scss';
 
 @include screen($tablet) {
   // https://css-tricks.com/eliminate-jumps-in-horizontal-centering-by-forcing-a-scroll-bar/

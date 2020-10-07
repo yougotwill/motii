@@ -35,7 +35,7 @@
 - [ ] Privacy Page
 - [x] Look into using react router
 - [x] Implement Positive Reinforcement
-- [ ] Stats share button
+- [x] Stats share button
 
 ## Settings
 
