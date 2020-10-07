@@ -1,32 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import confetti from 'canvas-confetti';
 
+import { fireworks } from '../../shared/confetti';
 import { MONTHS, DAYS_OF_WEEK, getNumDays } from '../../shared/datetime';
 
 import Modal from '../Modal';
-
-const runConfetti = () => {
-  const duration = 3 * 1000;
-  const animationEnd = Date.now() + duration;
-  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
-  
-  const randomInRange = (min, max) => {
-    return Math.random() * (max - min) + min;
-  };
-  
-  const interval = setInterval(() => {
-    const timeLeft = animationEnd - Date.now();
-  
-    if (timeLeft <= 0) {
-      return clearInterval(interval);
-    }
-  
-    const particleCount = 250 * (timeLeft / duration);
-    // since particles fall down, start a bit higher than random
-    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-  }, 250);
-};
 
 const Calendar = ({
   handleConfigChange,
@@ -34,6 +11,7 @@ const Calendar = ({
   habit,
   today,
   streak,
+  positivity,
   updateStreak,
   updateMissedDays,
   handleModal
@@ -78,8 +56,10 @@ const Calendar = ({
         setDate(new Date(year, month, event.target.innerText));
 
         handleModal(isSuccessModalOpen, setSuccessModalOpen);
-        // positive reinforcement
-        runConfetti();
+        
+        if (positivity) {
+          fireworks();
+        }
 
         if (month === today.getMonth()) {
           updateStreak(streak += value);
@@ -133,7 +113,7 @@ const Calendar = ({
       <Modal isOpen={isWarningModalOpen} closeHandler={() => { handleModal(isWarningModalOpen, setWarningModalOpen); }}>
         <h4>Please fill in your habit.</h4>
       </Modal>
-      <Modal isOpen={isSuccessModalOpen} closeHandler={() => { handleModal(isSuccessModalOpen, setSuccessModalOpen); }} shake={true}>
+      <Modal isOpen={isSuccessModalOpen && positivity} closeHandler={() => { handleModal((isSuccessModalOpen && positivity), setSuccessModalOpen); }} shake={positivity}>
         <h4>Great job!</h4>
         <img src='https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg' alt='cat' />
         <p>Nice work! Let's keep up the habit.</p>
