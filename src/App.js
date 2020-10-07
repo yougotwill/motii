@@ -5,6 +5,7 @@ import {
   Route,
   withRouter
 } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import './styles/App.scss';
 
@@ -155,22 +156,37 @@ const App = (props) => {
         <HeaderWithRouter handleConfigChange={updateConfig} theme={theme} />
         <Switch>
           <Route path='/login'>
+            <Helmet>
+              <title>motii - login</title>
+            </Helmet>
             <Login />
           </Route>
           <Route path='/signup'>
+            <Helmet>
+              <title>motii - signup</title>
+            </Helmet>
             <Signup />
           </Route>
           <Route path='/privacy'>
+              <Helmet>
+              <title>motii - privacy</title>
+            </Helmet>
             <Privacy />
           </Route>
           <Route path='/settings'>
             <>
+              <Helmet>
+                <title>motii - settings</title>
+              </Helmet>
               <Settings {...settingsProps} />
               <Footer />
             </>
           </Route>
           <Route path='/'>
             <>
+              <Helmet>
+                <title>motii</title>
+              </Helmet>
               <Main {...mainProps} />
               <Footer />
             </>
