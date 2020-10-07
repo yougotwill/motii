@@ -9,7 +9,7 @@ const Header = ({location, handleConfigChange, theme }) => {
   return (
     <div className='header'>
       <Link to='/'>
-        <h1>motii</h1>
+        <h1><u>motii</u></h1>
       </Link>
       { location.pathname === '/' || location.pathname === '/settings' ?
         <div className='options'>

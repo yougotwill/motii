@@ -4,24 +4,24 @@ const About = ({ handleRouteChange }) => {
 
   return (
     <div className='about'>
-      <h1>Introducing motii</h1>
+      <h1>Introducing <u>motii</u></h1>
 
       <div className='border'>
         <h2>What?</h2>
-        <p><b>motii</b> is a calendar that helps people motivate themselves when starting new habits.</p>
+        <p><b><u>motii</u></b> is a calendar that helps people motivate themselves when starting new habits.</p>
         <p><i>It’s not a habit forming,<br />it’s habit rewarding.</i></p>
       </div>
 
       <div className='border'>
         <h2>How?</h2>
-        <p><b>motii</b> is very simple by design.</p>
+        <p><b><u>motii</u></b> is very simple by design.</p>
         <ol>
           <li>Pick <b>1</b> habit you want to form.</li>
           <li>Type your habit into the HabitBox.</li>
           <li>Give yourself <b>1</b> month to make your habit.</li>
           <li>Everyday you do your habit cross off that day.</li>
-          <li>When you cross a day off <b>motii</b> will give you some positivity!</li>
-          <li>When you don't cross off a day <b>motii</b> don't feel too bad <b>motii</b> will <b>motivation</b> you!</li>
+          <li>When you cross a day off <b><u>motii</u></b> will give you some positivity!</li>
+          <li>When you don't cross off a day <b><u>motii</u></b> don't feel too bad <b><u>motii</u></b> will <b>motivation</b> you!</li>
           <li><b>When</b> you reach <b>1</b> month either continue with your habit or start a new one!</li>
           <b>Of course keep up your old habit!</b>
         </ol>  
@@ -29,15 +29,15 @@ const About = ({ handleRouteChange }) => {
 
       <div className='border'>
         <h2>Which?</h2>
-        There are 2 ways to use <b>motii</b>.
+        There are 2 ways to use <b><u>motii</u></b>.
 
         <h3>Local is Lekker</h3>
-        <p>You probably noticed at the top of this page there are <b>Login</b> and <b>Sign up</b> buttons. If you rolled your eyes at yet another user login productivity app fret not! You can use <b>motii</b> just fine without signing up for an account.</p>
-        <p>All that happens is that <b>motii</b> will store your data in local storage (see what I did there?). This means that if you clear your browser cache at any time you may lose your data on this page.</p>
+        <p>You probably noticed at the top of this page there are <b>Login</b> and <b>Sign up</b> buttons. If you rolled your eyes at yet another user login productivity app fret not! You can use <b><u>motii</u></b> just fine without signing up for an account.</p>
+        <p>All that happens is that <b><u>motii</u></b> will store your data in local storage (see what I did there?). This means that if you clear your browser cache at any time you may lose your data on this page.</p>
         <p>P.S. <i>Lekker</i> is an Afrikaans (South African) word that means great or cool.</p>
 
         <h3>...Working title</h3>
-        <p><span onClick={() => handleRouteChange('signup')}>Sign up</span> with <b>motii</b> and keep your data accross all your devices. Anywhere you login you can see your habit information!</p>
+        <p><span onClick={() => handleRouteChange('signup')}>Sign up</span> with <b><u>motii</u></b> and keep your data accross all your devices. Anywhere you login you can see your habit information!</p>
       </div>
 
       <div className='border'>
@@ -47,7 +47,7 @@ const About = ({ handleRouteChange }) => {
 
       <div className='border'>
         <h2>When?</h2>
-        <p>The idea for <b>motii</b> first came to me in March 2019. Since then it has had various iterations and forms as I improved my knowledge of Frontend development.</p>
+        <p>The idea for <b><u>motii</u></b> first came to me in March 2019. Since then it has had various iterations and forms as I improved my knowledge of Frontend development.</p>
         <p>This is the final product which I thought was worth sharing with the world!</p>
       </div>
     </div>

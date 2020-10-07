@@ -37,7 +37,7 @@ const Settings = ({
           <input type='checkbox' name='positivity' value={positivity} checked={positivity} onChange={positivityHandler} />
         </div>
         <div className='setting'>
-          <h3>Hide <b>motii</b> introduction</h3>
+          <h3>Hide explanation</h3>
           <input type='checkbox' name='hideIntro' value={hideIntro} checked={hideIntro} onChange={hideIntroHandler} />
         </div>
         <div className='setting'>

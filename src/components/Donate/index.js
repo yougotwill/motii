@@ -9,7 +9,7 @@ const Donate = () => {
     <div className='donate'>
       <p>Hey there <span role='img' aria-label='Waving Hand'>👋</span></p>
       <div className='option'>
-        <h3>Enjoying <b>motii</b>? Would you like to make a donation?</h3>
+        <h3>Enjoying <b><u>motii</u></b>? Would you like to make a donation?</h3>
         <a className='donate-button' href='https://www.paypal.me/yougotwill' target='_blank' rel='noopener noreferrer'><button>Donate via PayPal</button></a>
         </div>
       <br />
