@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import Modal from '../Modal';
+import Share from '../Share';
 
 import { MONTHS, getNumDays } from '../../shared/datetime';
 
@@ -6,7 +9,10 @@ const StatsBox = ({
   today,
   missed,
   streak,
+  handleModal
 }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
   const getRemainingDays = () => {
     return getNumDays(today)[today.getMonth()] - today.getDate();
   };
@@ -27,7 +33,11 @@ const StatsBox = ({
           <p>Missed</p>
           <h4>{missed} days</h4>
         </div>
+        <p className='share-button border' onClick={() => { handleModal(isModalOpen, setModalOpen); }}><b>Share</b></p>
       </fieldset>
+      <Modal isOpen={isModalOpen} closeHandler={() => { handleModal(isModalOpen, setModalOpen); }}>
+        <Share streak={streak} closeHandler={() => { handleModal(isModalOpen, setModalOpen); }}/>
+      </Modal>
     </form>
   );
 };
