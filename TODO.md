@@ -22,7 +22,6 @@
 
 ### Known Issues
 - [ ] Need to make missed days not include today in count
-- [ ] Scroll to top when clicking on routes https://mtm.dev/react-router-scroll-to-top/
 
 ### Project
 

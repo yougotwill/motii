@@ -18,7 +18,7 @@ import Settings from './pages/Settings';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-const App = (props) => {
+const App = () => {
   const today = new Date();
 
   const toggleModal = (modalState, modalHandler) => {
@@ -179,7 +179,6 @@ const App = (props) => {
                 <title>motii - settings</title>
               </Helmet>
               <Settings {...settingsProps} />
-              <Footer />
             </>
           </Route>
           <Route path='/'>
@@ -188,10 +187,10 @@ const App = (props) => {
                 <title>motii</title>
               </Helmet>
               <Main {...mainProps} />
-              <Footer />
             </>
           </Route>
         </Switch>
+        <Footer />
       </div>
     </BrowserRouter>
   );
