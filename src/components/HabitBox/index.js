@@ -43,8 +43,8 @@ const HabitBox = ({ habit, setHabit, handleModal }) => {
       <Modal isOpen={isModalOpen} setModalOpen={setModalOpen} closeHandler={() => { changeHandler(false); }}>
         <h3>Changing habits?</h3>
         <p>This will clear your streak</p>
-        <button onClick={() => { changeHandler(true); }}>Yes</button>
-        <button onClick={() => { changeHandler(false); }}>No</button>
+        <button className='dialog-button' onClick={() => { changeHandler(true); }}>Yes</button>
+        <button className='dialog-button' onClick={() => { changeHandler(false); }}>No</button>
       </Modal>
     </form>
   );

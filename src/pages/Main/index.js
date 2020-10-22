@@ -34,7 +34,8 @@ const Main = ({
   const statsBoxProps = {
     today,
     missed,
-    streak
+    streak,
+    handleModal
   };
 
   return (
