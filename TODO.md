@@ -1,8 +1,8 @@
 # TODO
 
-- [ ] Make sure current habit persists after refreshing
+- [x] Make sure current habit persists after refreshing
   - [ ] It breaks when you select a success day
-
+  - [ ] Fix placeholder text flashing
 ## Modals
 
 - [x] Trying to get the habit box to reset it's text if you press no on the confirmation dialog

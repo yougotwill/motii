@@ -1,21 +1,32 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import Editable from '../Editable';
 import Modal from '../Modal';
 
-const HabitBox = ({ habit, setHabit, handleModal }) => {
+const HabitBox = ({
+  habit,
+  updateHabit,
+  handleModal,
+  handleConfigChange
+}) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [text, setText] = useState(habit);
+  const [text, setText] = useState('');
   const inputRef = useRef();
 
   const changeHandler = (agree) => {
     if (agree) {
-      setHabit(text);
+      updateHabit(text);
     } else {
       setText(habit);
     }
     handleModal(isModalOpen, setModalOpen);
   };
+
+  useEffect(() => {
+    if (habit) {
+      setText(habit);
+    }
+  }, [habit]);
 
   return (
     <form className='habitbox'>

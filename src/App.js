@@ -25,6 +25,7 @@ const App = () => {
     modalHandler(!modalState);
   };
 
+  const [habit, setHabit] = useState('');
   const [theme, setTheme] = useState('');
   const [hideIntro, setHideIntro] = useState(false);
   const [positivity, setPositivity] = useState(false);
@@ -53,6 +54,12 @@ const App = () => {
     updateConfig('positivity', value);
   };
 
+  const updateHabit = (value) => {
+    setHabit(value);
+    updateConfig('habit', value);
+    setData({});
+  };
+
   const updateSettings = (property, value) => {
     if (value !== null) {
       switch (property) {
@@ -76,6 +83,7 @@ const App = () => {
     let config = existingConfig ? existingConfig : JSON.parse(localStorage.getItem('config'));
     if (!config) { return {}; }
 
+    setHabit(config.habit);
     config.data ? setData(config.data) : setData({});
     const streakVal = config.data ? Object.keys(config.data).filter((key) => {
         return Number(key.split('-')[1]) === today.getMonth();
@@ -95,7 +103,8 @@ const App = () => {
       data,
       theme,
       hideIntro,
-      positivity
+      positivity,
+      habit
     };
 
     const props = property.split('.');
@@ -130,6 +139,8 @@ const App = () => {
     handleConfigChange: updateConfig,
     updateStreak: setStreak,
     updateMissedDays: updateMissedDays,
+    updateHabit: updateHabit,
+    habit,
     hideIntro,
     today,
     data,

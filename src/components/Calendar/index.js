@@ -48,7 +48,7 @@ const Calendar = ({
       handleConfigChange(`data.${dateString}`, '', true);
       value = -1;
     } else {
-      if (habit.length > 0) {
+      if (habit && habit.length > 0) {
         handleConfigChange(`data.${dateString}`, habit);
         value = 1;
         

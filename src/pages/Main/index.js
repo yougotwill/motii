@@ -1,5 +1,5 @@
 // Design: https://www.figma.com/file/PrWnDYzLv8PPxdlV5GauiD/MainScreen?node-id=0%3A1
-import React, { useState } from 'react';
+import React from 'react';
 
 import Calendar from '../../components/Calendar';
 import HabitBox from '../../components/HabitBox';
@@ -11,6 +11,8 @@ const Main = ({
   handleConfigChange,
   updateStreak,
   updateMissedDays,
+  updateHabit,
+  habit,
   hideIntro,
   today,
   data,
@@ -18,8 +20,6 @@ const Main = ({
   missed,
   positivity
 }) => {
-  const [habit, setHabit] = useState('');
-
   const calendarProps = {
     data,
     habit,
@@ -42,7 +42,7 @@ const Main = ({
     <div className={hideIntro ? 'main' : 'main full'}>
       <h2 className='banner'>Under construction! <span role='img' aria-label='road block'>🚧</span></h2>
       <Calendar handleConfigChange={handleConfigChange} {...calendarProps} />
-      <HabitBox habit={habit} setHabit={setHabit} handleModal={handleModal} />
+      <HabitBox habit={habit} updateHabit={updateHabit} handleModal={handleModal} handleConfigChange={handleConfigChange} />
       <StatsBox {...statsBoxProps} />
       {hideIntro ? null :
         <>
