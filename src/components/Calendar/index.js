@@ -117,7 +117,7 @@ const Calendar = ({
         <h4>Great job!</h4>
         <img src='https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg' alt='cat' />
         <p>Ginger is proud of you.</p>
-        <p>See you tomorrow <span>💪</span></p>
+        <p>See you tomorrow <span role='img' aria-label='flex'>💪</span></p>
       </Modal>
     </div>
   );
