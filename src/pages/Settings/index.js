@@ -1,6 +1,8 @@
 // TODO move into modal
 import React from 'react';
 
+import { fireworks } from '../../shared/confetti';
+
 import Donate from '../../components/Donate';
 
 import { version } from '../../../package.json';
@@ -20,8 +22,9 @@ const Settings = ({
 
   const positivityHandler = () => {
     handlePositivity(!positivity);
-    // TODO
-    window.alert('Toggling positivity!');
+    if (!positivity) {
+      fireworks();
+    }
   };
 
   const hideIntroHandler= () => {

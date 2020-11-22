@@ -15,7 +15,8 @@ const Main = ({
   today,
   data,
   streak,
-  missed
+  missed,
+  positivity
 }) => {
   const [habit, setHabit] = useState('');
 
@@ -24,6 +25,7 @@ const Main = ({
     habit,
     today,
     streak,
+    positivity,
     updateStreak,
     updateMissedDays,
     handleModal

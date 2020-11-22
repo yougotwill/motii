@@ -134,7 +134,8 @@ const App = () => {
     today,
     data,
     streak,
-    missed
+    missed,
+    positivity
   };
 
   const settingsProps = {

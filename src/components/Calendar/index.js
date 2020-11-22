@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import { fireworks } from '../../shared/confetti';
 import { MONTHS, DAYS_OF_WEEK, getNumDays } from '../../shared/datetime';
 
 import Modal from '../Modal';
@@ -10,11 +11,13 @@ const Calendar = ({
   habit,
   today,
   streak,
+  positivity,
   updateStreak,
   updateMissedDays,
   handleModal
 }) => {
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isWarningModalOpen, setWarningModalOpen] = useState(false);
+  const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
 
   const getStartDayOfMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
@@ -48,16 +51,22 @@ const Calendar = ({
       if (habit.length > 0) {
         handleConfigChange(`data.${dateString}`, habit);
         value = 1;
+        
+        event.target.classList.toggle('success');
+        setDate(new Date(year, month, event.target.innerText));
+
+        handleModal(isSuccessModalOpen, setSuccessModalOpen);
+
+        if (positivity) {
+          fireworks();
+        }
+
+        if (month === today.getMonth()) {
+          updateStreak(streak += value);
+        }
       } else {
-        handleModal(isModalOpen, setModalOpen);
+        handleModal(isWarningModalOpen, setWarningModalOpen);
       }
-    }
-
-    event.target.classList.toggle('success');
-    setDate(new Date(year, month, event.target.innerText));
-
-    if (month === today.getMonth()) {
-      updateStreak(streak += value);
     }
   };
 
@@ -101,8 +110,14 @@ const Calendar = ({
             );
           })}
       </div>
-      <Modal isOpen={isModalOpen} closeHandler={() => { handleModal(isModalOpen, setModalOpen); }}>
+      <Modal isOpen={isWarningModalOpen} closeHandler={() => { handleModal(isWarningModalOpen, setWarningModalOpen); }}>
         <h4>Please fill in your habit.</h4>
+      </Modal>
+      <Modal isOpen={isSuccessModalOpen && positivity} closeHandler={() => { handleModal((isSuccessModalOpen && positivity), setSuccessModalOpen); }} shake={positivity}>
+        <h4>Great job!</h4>
+        <img src='https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg' alt='cat' />
+        <p>Ginger is proud of you.</p>
+        <p>See you tomorrow <span role='img' aria-label='flex'>💪</span></p>
       </Modal>
     </div>
   );

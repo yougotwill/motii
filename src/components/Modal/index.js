@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 
 const modalRoot = document.getElementById('modal-root');
 
-const Modal = ({ isOpen, closeHandler, children }) => {
+const Modal = ({ isOpen, closeHandler, shake, children }) => {
   const modalContainer = document.createElement('div');
   // TODO check for multiple modals open
   useEffect(() => {
@@ -19,7 +19,7 @@ const Modal = ({ isOpen, closeHandler, children }) => {
   return (
     isOpen && createPortal(
       <div className='modal-container'>
-        <div className='modal-box'>
+        <div className={shake ? 'modal-box modal-shake' : 'modal-box'}>
           <div className='modal-header clearfix'>
             <span onClick={closeHandler}>x</span>
           </div>
