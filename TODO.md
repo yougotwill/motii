@@ -31,7 +31,7 @@
 
 ## Long-term
 
-- [ ] Link backend and setup sign in and login
+- [ ] Link backend and setup sign in and login (looking into firebase)
 - [ ] Privacy Page
 - [x] Look into using react router
 - [x] Implement Positive Reinforcement
