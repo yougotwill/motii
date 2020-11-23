@@ -8,7 +8,7 @@ const Account  = () => {
   return (
     <div className='account border'>
       <div className='panel'>
-        <h2>Acount</h2>
+        <h2>Account</h2>
         <div className='detail'>
           <h3>Email:</h3>
           <span>{currentUser.email}</span>

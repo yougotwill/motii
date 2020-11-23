@@ -20,6 +20,7 @@
 - [ ] Use useContext to decrease amount of prop drilling. i.e. config and modals
 - [x] Use Portal from react-dom for modal
 - [x] Update html meta data (Look into using react helmet)
+- [ ] Test Firebase on prod, netlify
 - [ ] Move sass imports to the top of the file, rename all style files to _style.scss and import as ..../style
 
 ### Known Issues
@@ -29,11 +30,10 @@
 
 - [x] Look into react fragments
 - [ ] Make shared config module instead of prop drilling (could minimize a lot of repeated code)
-- [ ] rename event handlers from handleObject to objectHandler
 
 ## Long-term
 
-- [ ] Link backend and setup sign in and login (looking into firebase)
+- [x] Link backend and setup sign in and login (looking into firebase)
 - [ ] Privacy Page
 - [x] Look into using react router
 - [x] Implement Positive Reinforcement
@@ -52,3 +52,4 @@
 # References
 
 https://blog.logrocket.com/the-complete-guide-to-building-inline-editable-ui-in-react/
+https://www.youtube.com/watch?v=PKwu15ldZ7k&t=1651s
