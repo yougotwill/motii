@@ -1,50 +1,49 @@
 import React, { useState, useRef }from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
-const Login = () => {
+const ForgotPassword = () => {
   const emailRef = useRef();
-  const passwordRef = useRef();
 
-  const { login } = useAuth();
+  const { resetPassword } = useAuth();
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     try {
+      setMessage('');
       setError('');
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      history.push('/');
+      await resetPassword(emailRef.current.value);
+      setMessage('Check your inbox for further instructions');
     } catch(err) {
-      setError('Failed to login');
+      setError('Failed to reset password');
       console.error(err);
     }
     setLoading(false);
   };
 
   return (
-    <div className='login'>
-      {error &&
+    <div className='forgot-password'>
+       {error &&
         <h2 className='banner'>{error}! <span role='img' aria-label='police light'>🚨</span></h2>
+      }
+     {message &&
+        <h2 className='banner'>{message}! <span role='img' aria-label='incoming envelope'>📨</span></h2>
       }
       <form onSubmit={handleSubmit}>
         <fieldset className='border'>
-          <legend>Login</legend>
+          <legend>Forgot Password</legend>
           <div className='details'>
             <div id='email'>
               <label htmlFor='email'>Email</label>
               <input type='email' name='email' ref={emailRef} required />
             </div>
-            <div id='password'>
-              <label htmlFor='password'>Password</label>
-              <input type='password' name='password' ref={passwordRef} required />
-            </div>
-            <input type='submit' value='Login' disabled={loading} />
-            <Link to='/forgot-password'>Forgot password?</Link>
+            <input type='submit' value='Reset Password' disabled={loading} />
+            <Link to='/login'>Back to Login</Link>
             <p>Don't have an account yet? <Link to='/signup'>Sign Up</Link></p>
           </div>
         </fieldset>
@@ -53,4 +52,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;

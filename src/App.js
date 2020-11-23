@@ -13,6 +13,7 @@ import { AuthProvider } from './contexts/AuthContext';
 
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import ForgotPassword from './pages/ForgotPassword';
 import Main from './pages/Main';
 import Privacy from './pages/Privacy';
 import Account from './pages/Account';
@@ -183,6 +184,12 @@ const App = () => {
                 <title>motii - signup</title>
               </Helmet>
               <Signup />
+            </Route>
+            <Route path='/forgot-password'>
+              <Helmet>
+                <title>motii - password</title>
+              </Helmet>
+              <ForgotPassword />
             </Route>
             <Route path='/privacy'>
                 <Helmet>
