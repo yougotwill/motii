@@ -11,7 +11,7 @@ body {
   &.dark {
     background: #1A1F23;
     color: #EB196D;
-    a, .arrow {
+    a, .arrow, .action {
       color: #F8FAFB;
     }
     h1 {
@@ -63,9 +63,10 @@ h1 {
   color: black;
 }
 
-a {
+a, .action {
   font-weight: 700;
   text-decoration: none;
+  cursor: pointer;
 }
 
 input {
@@ -90,7 +91,10 @@ legend {
 // pages
 @import '../pages/Login/_Login.scss';
 @import '../pages/Signup/_Signup.scss';
+@import '../pages/ForgotPassword/_ForgotPassword.scss';
 @import '../pages/Main/_Main.scss';
+@import '../pages/Account/_Account.scss';
+@import '../pages/Update/_Update.scss';
 @import '../pages/Settings/_Settings.scss';
 
 // components
