@@ -15,8 +15,10 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Main from './pages/Main';
 import Privacy from './pages/Privacy';
+import Account from './pages/Account';
 import Settings from './pages/Settings';
 
+import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -188,6 +190,14 @@ const App = () => {
               </Helmet>
               <Privacy />
             </Route>
+            <PrivateRoute path='/account'>
+              <>
+                <Helmet>
+                  <title>motii - account</title>
+                </Helmet>
+                <Account />
+              </>
+            </PrivateRoute>
             <Route path='/settings'>
               <>
                 <Helmet>

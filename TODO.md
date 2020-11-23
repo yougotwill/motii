@@ -3,6 +3,7 @@
 - [x] Make sure current habit persists after refreshing
   - [ ] It breaks when you select a success day
   - [ ] Fix placeholder text flashing
+
 ## Modals
 
 - [x] Trying to get the habit box to reset it's text if you press no on the confirmation dialog
@@ -19,6 +20,7 @@
 - [ ] Use useContext to decrease amount of prop drilling. i.e. config and modals
 - [x] Use Portal from react-dom for modal
 - [x] Update html meta data (Look into using react helmet)
+- [ ] Move sass imports to the top of the file, rename all style files to _style.scss and import as ..../style
 
 ### Known Issues
 - [ ] Need to make missed days not include today in count
