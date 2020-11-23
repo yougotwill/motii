@@ -17,6 +17,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import Main from './pages/Main';
 import Privacy from './pages/Privacy';
 import Account from './pages/Account';
+import Update from './pages/Update';
 import Settings from './pages/Settings';
 
 import PrivateRoute from './components/PrivateRoute';
@@ -203,6 +204,14 @@ const App = () => {
                   <title>motii - account</title>
                 </Helmet>
                 <Account />
+              </>
+            </PrivateRoute>
+            <PrivateRoute path='/update'>
+              <>
+                <Helmet>
+                  <title>motii - update</title>
+                </Helmet>
+                <Update />
               </>
             </PrivateRoute>
             <Route path='/settings'>

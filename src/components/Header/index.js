@@ -6,6 +6,7 @@ const Header = ({location, handleConfigChange, theme }) => {
   const [error, setError] = useState('');
   const history = useHistory();
   const { currentUser, logout } = useAuth();
+  const silentRoutes = ['/login', '/signup', '/forgot-password' ,'/privacy'];
 
   const updateTheme = (themeName) => {
     handleConfigChange('theme', themeName);
@@ -26,9 +27,7 @@ const Header = ({location, handleConfigChange, theme }) => {
       <Link to='/'>
         <h1><u>motii</u></h1>
       </Link>
-      { location.pathname === '/' ||
-        location.pathname === '/settings' || 
-        location.pathname === '/account' ?
+      { silentRoutes.indexOf(location.pathname) === -1 ?
         <div className='options'>
           <div className='account'>
             {currentUser ?
