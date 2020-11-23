@@ -9,6 +9,8 @@ import { Helmet } from 'react-helmet';
 
 import './styles/App.scss';
 
+import { AuthProvider } from './contexts/AuthContext';
+
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Main from './pages/Main';
@@ -164,46 +166,48 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className='app'>
-        <HeaderWithRouter handleConfigChange={updateConfig} theme={theme} />
-        <Switch>
-          <Route path='/login'>
-            <Helmet>
-              <title>motii - login</title>
-            </Helmet>
-            <Login />
-          </Route>
-          <Route path='/signup'>
-            <Helmet>
-              <title>motii - signup</title>
-            </Helmet>
-            <Signup />
-          </Route>
-          <Route path='/privacy'>
+      <AuthProvider>
+        <div className='app'>
+          <HeaderWithRouter handleConfigChange={updateConfig} theme={theme} />
+          <Switch>
+            <Route path='/login'>
               <Helmet>
-              <title>motii - privacy</title>
-            </Helmet>
-            <Privacy />
-          </Route>
-          <Route path='/settings'>
-            <>
-              <Helmet>
-                <title>motii - settings</title>
+                <title>motii - login</title>
               </Helmet>
-              <Settings {...settingsProps} />
-            </>
-          </Route>
-          <Route path='/'>
-            <>
+              <Login />
+            </Route>
+            <Route path='/signup'>
               <Helmet>
-                <title>motii</title>
+                <title>motii - signup</title>
               </Helmet>
-              <Main {...mainProps} />
-            </>
-          </Route>
-        </Switch>
-        <Footer />
-      </div>
+              <Signup />
+            </Route>
+            <Route path='/privacy'>
+                <Helmet>
+                <title>motii - privacy</title>
+              </Helmet>
+              <Privacy />
+            </Route>
+            <Route path='/settings'>
+              <>
+                <Helmet>
+                  <title>motii - settings</title>
+                </Helmet>
+                <Settings {...settingsProps} />
+              </>
+            </Route>
+            <Route path='/'>
+              <>
+                <Helmet>
+                  <title>motii</title>
+                </Helmet>
+                <Main {...mainProps} />
+              </>
+            </Route>
+          </Switch>
+          <Footer />
+        </div>
+      </AuthProvider>
     </BrowserRouter>
   );
 };
