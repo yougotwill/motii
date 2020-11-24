@@ -25,10 +25,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 const App = () => {
-  const toggleModal = (modalState, modalHandler) => {
-    modalHandler(!modalState);
-  };
-
   const HeaderWithRouter = withRouter(Header);
 
   return (
@@ -60,7 +56,7 @@ const App = () => {
                 <Settings />
               </Route>
               <Route path='/'>
-                <Main handleModal={toggleModal} />
+                <Main />
               </Route>
             </Switch>
             <Footer />

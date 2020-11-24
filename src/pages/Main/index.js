@@ -7,17 +7,19 @@ import HabitBox from '../../components/HabitBox';
 import StatsBox from '../../components/StatsBox';
 import About from '../../components/About';
 
-const Main = ({
-  handleModal,
-}) => {
+const Main = () => {
   const { hideIntro } = useConfig();
+
+  const toggleModal = (modalState, modalHandler) => {
+    modalHandler(!modalState);
+  };
 
   return (
     <div className={hideIntro ? 'main' : 'main full'}>
       <h2 className='banner'>Under construction! <span role='img' aria-label='road block'>🚧</span></h2>
-      <Calendar handleModal={handleModal} />
-      <HabitBox handleModal={handleModal} />
-      <StatsBox handleModal={handleModal} />
+      <Calendar handleModal={toggleModal} />
+      <HabitBox handleModal={toggleModal} />
+      <StatsBox handleModal={toggleModal} />
       {hideIntro ? null :
         <>
           <div className='arrow'>
