@@ -3,7 +3,7 @@ import {
   BrowserRouter,
   Switch,
   Route,
-  withRouter,
+  withRouter
 } from 'react-router-dom';
 
 import './styles/App.scss';
@@ -32,7 +32,7 @@ const App = () => {
   const HeaderWithRouter = withRouter(Header);
 
   return (
-  <BrowserRouter>
+    <BrowserRouter>
       <AuthProvider>
         <ConfigProvider>
           <div className='app'>
