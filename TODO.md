@@ -1,5 +1,5 @@
 # TODO
-
+https://www.youtube.com/watch?v=mYyPbfpoZeM&list=PL4cUxeGkcC9itfjle0ji1xOZ2cjRGY_WB&index=6
 - [x] Make sure current habit persists after refreshing
   - [ ] It breaks when you select a success day
   - [ ] Fix placeholder text flashing

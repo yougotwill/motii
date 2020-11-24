@@ -18,12 +18,12 @@ const Login = () => {
       setError('');
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
+      setLoading(false);
       history.push('/');
     } catch(err) {
       setError('Failed to login');
       console.error(err);
     }
-    setLoading(false);
   };
 
   return (
