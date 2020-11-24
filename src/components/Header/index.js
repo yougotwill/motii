@@ -29,6 +29,20 @@ const Header = ({ location }) => {
     loadAppData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  
+  useEffect(() => {
+    let path = 'motii'
+    switch(location.pathname) {
+      case '/':
+        break;
+      case '/forgot-password':
+        path += ' - password';
+        break;
+      default:
+        path += (' - ' + location.pathname.substring(1, location.pathname.length));
+    }
+    document.title = path;
+  }, [location.pathname]);
 
   return (
     <div className='header'>
