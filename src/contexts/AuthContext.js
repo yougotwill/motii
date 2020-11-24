@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { auth } from '../shared/firebase';
+import { auth, db } from '../shared/firebase';
 
 const AuthContext = React.createContext();
 
@@ -43,6 +43,21 @@ export const AuthProvider = ({ children }) => {
 
     return unsubscribe;
   }, []);
+
+  useEffect(() => {
+    async function fetchUserData() {
+      if (currentUser) {
+        const snapshot = await db.collection('users').where('email', '==', currentUser.email).get();
+        if (snapshot.docs.length > 0) {
+          console.log(snapshot.docs[0].data());
+        } else {
+          console.error('Failed to fetch user data');
+        }
+      }
+    }
+
+    fetchUserData();
+  }, [currentUser]);
 
   const value = {
     currentUser,
