@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useConfig } from '../../contexts/ConfigContext';
 
 import Editable from '../Editable';
 import Modal from '../Modal';
 
 const HabitBox = ({
-  habit,
-  updateHabit,
   handleModal,
-  handleConfigChange
 }) => {
+  const { habit, updateHabit } = useConfig();
   const [isModalOpen, setModalOpen] = useState(false);
   const [text, setText] = useState('');
   const inputRef = useRef();

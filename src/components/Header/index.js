@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useConfig } from '../../contexts/ConfigContext';
+
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
-const Header = ({location, handleConfigChange, theme }) => {
+const Header = ({ location }) => {
+  const { theme, updateConfig, loadAppData } = useConfig();
   const [error, setError] = useState('');
   const history = useHistory();
   const { currentUser, logout } = useAuth();
   const silentRoutes = ['/login', '/signup', '/forgot-password' ,'/privacy'];
 
   const updateTheme = (themeName) => {
-    handleConfigChange('theme', themeName);
+    updateConfig('theme', themeName);
   };
   const handleLogout = async () => {
     try {
@@ -21,6 +24,11 @@ const Header = ({location, handleConfigChange, theme }) => {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+    loadAppData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className='header'>

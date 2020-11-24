@@ -1,5 +1,6 @@
 // TODO move into modal
 import React from 'react';
+import { useConfig } from '../../contexts/ConfigContext';
 
 import { fireworks } from '../../shared/confetti';
 
@@ -7,13 +8,8 @@ import Donate from '../../components/Donate';
 
 import { version } from '../../../package.json';
 
-const Settings = ({
-  handleConfigChange,
-  handleHideIntro,
-  handlePositivity,
-  hideIntro,
-  positivity
-}) => {
+const Settings = () => {
+  const { hideIntro, positivity, updateHideIntro, updatePositivity } = useConfig();
   const clearConfig = () => {
     // TODO confirmation
     localStorage.removeItem('config');
@@ -21,14 +17,14 @@ const Settings = ({
   };
 
   const positivityHandler = () => {
-    handlePositivity(!positivity);
+    updatePositivity(!positivity);
     if (!positivity) {
       fireworks();
     }
   };
 
   const hideIntroHandler= () => {
-    handleHideIntro(!hideIntro);
+    updateHideIntro(!hideIntro);
   };
 
   return (
