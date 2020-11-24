@@ -34,8 +34,8 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <ConfigProvider>
+      <ConfigProvider>
+        <AuthProvider>
           <div className='app'>
             <HeaderWithRouter />
             <Switch>
@@ -98,8 +98,8 @@ const App = () => {
             </Switch>
             <Footer />
           </div>
-        </ConfigProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </ConfigProvider>
     </BrowserRouter>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { auth, db } from '../shared/firebase';
+import { useConfig } from './ConfigContext';
 
 const AuthContext = React.createContext();
 
@@ -8,6 +9,7 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }) => {
+  const { loadAppData } = useConfig();
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -49,7 +51,13 @@ export const AuthProvider = ({ children }) => {
       if (currentUser) {
         const snapshot = await db.collection('users').where('email', '==', currentUser.email).get();
         if (snapshot.docs.length > 0) {
-          console.log(snapshot.docs[0].data());
+          const userData = snapshot.docs[0].data();
+          const { theme, hideIntro, positivity, habit, data } = userData;
+          const userConfig = { theme, hideIntro, positivity, habit, data };
+          loadAppData(userConfig);
+          // TODO need to deal with logging out
+          // localStorage.setItem('config', JSON.stringify(userConfig));
+          console.log('Loaded user data');
         } else {
           console.error('Failed to fetch user data');
         }
@@ -57,6 +65,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     fetchUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   const value = {
