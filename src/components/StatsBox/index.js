@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useConfig } from '../../contexts/ConfigContext';
 
 import Modal from '../Modal';
 import Share from '../Share';
@@ -6,11 +7,9 @@ import Share from '../Share';
 import { MONTHS, getNumDays } from '../../shared/datetime';
 
 const StatsBox = ({
-  today,
-  missed,
-  streak,
   handleModal
 }) => {
+  const { today, streak, missed } = useConfig();
   const [isModalOpen, setModalOpen] = useState(false);
 
   const getRemainingDays = () => {

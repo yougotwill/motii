@@ -1,5 +1,5 @@
 # TODO
-
+https://www.youtube.com/watch?v=mYyPbfpoZeM&list=PL4cUxeGkcC9itfjle0ji1xOZ2cjRGY_WB&index=6
 - [x] Make sure current habit persists after refreshing
   - [ ] It breaks when you select a success day
   - [ ] Fix placeholder text flashing
@@ -17,7 +17,7 @@
   - [ ] NB: Warning If habit is changed then you lose the current streak
 - [x] useEffect warning on App.js
 - [ ] Show warning before change state of previous months success days, habit will be lost
-- [ ] Use useContext to decrease amount of prop drilling. i.e. config and modals
+- [x] Use useContext to decrease amount of prop drilling. i.e. config and modals
 - [x] Use Portal from react-dom for modal
 - [x] Update html meta data (Look into using react helmet)
 - [ ] Test Firebase on prod, netlify
@@ -29,7 +29,7 @@
 ### Project
 
 - [x] Look into react fragments
-- [ ] Make shared config module instead of prop drilling (could minimize a lot of repeated code)
+- [x] Make shared config module instead of prop drilling (could minimize a lot of repeated code)
 
 ## Long-term
 

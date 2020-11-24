@@ -1,5 +1,6 @@
 // Design: https://www.figma.com/file/PrWnDYzLv8PPxdlV5GauiD/MainScreen?node-id=0%3A1
 import React from 'react';
+import { useConfig } from '../../contexts/ConfigContext';
 
 import Calendar from '../../components/Calendar';
 import HabitBox from '../../components/HabitBox';
@@ -8,42 +9,15 @@ import About from '../../components/About';
 
 const Main = ({
   handleModal,
-  handleConfigChange,
-  updateStreak,
-  updateMissedDays,
-  updateHabit,
-  habit,
-  hideIntro,
-  today,
-  data,
-  streak,
-  missed,
-  positivity
 }) => {
-  const calendarProps = {
-    data,
-    habit,
-    today,
-    streak,
-    positivity,
-    updateStreak,
-    updateMissedDays,
-    handleModal
-  };
-
-  const statsBoxProps = {
-    today,
-    missed,
-    streak,
-    handleModal
-  };
+  const { hideIntro } = useConfig();
 
   return (
     <div className={hideIntro ? 'main' : 'main full'}>
       <h2 className='banner'>Under construction! <span role='img' aria-label='road block'>🚧</span></h2>
-      <Calendar handleConfigChange={handleConfigChange} {...calendarProps} />
-      <HabitBox habit={habit} updateHabit={updateHabit} handleModal={handleModal} handleConfigChange={handleConfigChange} />
-      <StatsBox {...statsBoxProps} />
+      <Calendar handleModal={handleModal} />
+      <HabitBox handleModal={handleModal} />
+      <StatsBox handleModal={handleModal} />
       {hideIntro ? null :
         <>
           <div className='arrow'>

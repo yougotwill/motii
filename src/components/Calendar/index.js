@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useConfig } from '../../contexts/ConfigContext';
 
 import { fireworks } from '../../shared/confetti';
 import { MONTHS, DAYS_OF_WEEK, getNumDays } from '../../shared/datetime';
@@ -6,34 +7,26 @@ import { MONTHS, DAYS_OF_WEEK, getNumDays } from '../../shared/datetime';
 import Modal from '../Modal';
 
 const Calendar = ({
-  handleConfigChange,
-  data,
-  habit,
-  today,
-  streak,
-  positivity,
-  updateStreak,
-  updateMissedDays,
   handleModal
 }) => {
-  const [isWarningModalOpen, setWarningModalOpen] = useState(false);
-  const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
-
+  const { today, habit, data, positivity, streak, updateConfig, updateStreak } = useConfig();
+  const [date, setDate] = useState(today);
+  const [day, setDay] = useState(date.getDate());
+  const [month, setMonth] = useState(date.getMonth());
+  const [year, setYear] = useState(date.getFullYear());
   const getStartDayOfMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
+  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
+
+  const [isWarningModalOpen, setWarningModalOpen] = useState(false);
+  const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
 
   const isToday = (d) => {
     return year === today.getFullYear() &&
       month === today.getMonth() &&
       d === today.getDate();
   };
-
-  const [date, setDate] = useState(today);
-  const [day, setDay] = useState(date.getDate());
-  const [month, setMonth] = useState(date.getMonth());
-  const [year, setYear] = useState(date.getFullYear());
-  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
 
   const handleDayClick = (event, d) => {
     // TODO Future days needs a better solution
@@ -45,11 +38,11 @@ const Calendar = ({
     const dateString = `${year}-${month}-${event.target.innerText}`;
     let value = 0;
     if (data[dateString]) {
-      handleConfigChange(`data.${dateString}`, '', true);
+      updateConfig(`data.${dateString}`, '', true);
       value = -1;
     } else {
       if (habit && habit.length > 0) {
-        handleConfigChange(`data.${dateString}`, habit);
+        updateConfig(`data.${dateString}`, habit);
         value = 1;
         
         event.target.classList.toggle('success');
@@ -62,7 +55,7 @@ const Calendar = ({
         }
 
         if (month === today.getMonth()) {
-          updateStreak(streak += value);
+          updateStreak(streak + value);
         }
       } else {
         handleModal(isWarningModalOpen, setWarningModalOpen);
