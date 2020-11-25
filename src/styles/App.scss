@@ -1,3 +1,27 @@
+// mixins
+@import '../styles/mixins/screen.scss';
+@import '../styles/mixins/shake.scss';
+
+// pages
+@import '../pages/Login/style';
+@import '../pages/Signup/style';
+@import '../pages/ForgotPassword/style';
+@import '../pages/Main/style';
+@import '../pages/Account/style';
+@import '../pages/Update/style';
+@import '../pages/Settings/style';
+
+// components
+@import '../components/Calendar/style';
+@import '../components/Header/style';
+@import '../components/HabitBox/style';
+@import '../components/StatsBox/style';
+@import '../components/About/style';
+@import '../components/Footer/style';
+@import '../components/Donate/style';
+@import '../components/Modal/style';
+@import '../components/Share/style';
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -83,30 +107,6 @@ legend {
   padding-left: 1rem;
   padding-right: 1rem;
 }
-
-// mixins
-@import '../styles/mixins/screen.scss';
-@import '../styles/mixins/shake.scss';
-
-// pages
-@import '../pages/Login/_Login.scss';
-@import '../pages/Signup/_Signup.scss';
-@import '../pages/ForgotPassword/_ForgotPassword.scss';
-@import '../pages/Main/_Main.scss';
-@import '../pages/Account/_Account.scss';
-@import '../pages/Update/_Update.scss';
-@import '../pages/Settings/_Settings.scss';
-
-// components
-@import '../components/Calendar/_Calendar.scss';
-@import '../components/Header/_Header.scss';
-@import '../components/HabitBox/_HabitBox.scss';
-@import '../components/StatsBox/_StatsBox.scss';
-@import '../components/About/_About.scss';
-@import '../components/Footer/_Footer.scss';
-@import '../components/Donate/_Donate.scss';
-@import '../components/Modal/_Modal.scss';
-@import '../components/Share/_Share.scss';
 
 @include screen($tablet) {
   // https://css-tricks.com/eliminate-jumps-in-horizontal-centering-by-forcing-a-scroll-bar/

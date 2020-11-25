@@ -21,7 +21,7 @@ https://www.youtube.com/watch?v=mYyPbfpoZeM&list=PL4cUxeGkcC9itfjle0ji1xOZ2cjRGY
 - [x] Use Portal from react-dom for modal
 - [x] Update html meta data (Look into using react helmet)
 - [ ] Test Firebase on prod, netlify
-- [ ] Move sass imports to the top of the file, rename all style files to _style.scss and import as ..../style
+- [x] Move sass imports to the top of the file, rename all style files to _style.scss and import as ..../style
 
 ### Known Issues
 - [ ] Need to make missed days not include today in count
