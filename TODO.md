@@ -34,7 +34,7 @@ https://www.youtube.com/watch?v=mYyPbfpoZeM&list=PL4cUxeGkcC9itfjle0ji1xOZ2cjRGY
 ## Long-term
 
 - [x] Link backend and setup sign in and login (looking into firebase)
-- [ ] Privacy Page
+- [x] Privacy Page
 - [x] Look into using react router
 - [x] Implement Positive Reinforcement
 - [x] Stats share button
