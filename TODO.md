@@ -38,6 +38,7 @@ https://www.youtube.com/watch?v=mYyPbfpoZeM&list=PL4cUxeGkcC9itfjle0ji1xOZ2cjRGY
 - [x] Look into using react router
 - [x] Implement Positive Reinforcement
 - [x] Stats share button
+- [ ] Split up ConfigContext into UIContext and DataContext for performance
 
 ## Settings
 
