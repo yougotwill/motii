@@ -42,6 +42,7 @@ body {
       background-color: #333333;
       color: #EB196D;
       border-color: transparent;
+      cursor: pointer;
     }
     h1 {
       color: #EB196D;
@@ -54,8 +55,11 @@ body {
     .border {
       border-color: #EB196D;
     }
-    .calendar .content .day.today, .modal-container .modal-box {
+    .calendar .content .day.today {
       background-color: #333333;
+    }
+    .modal-container .modal-box {
+      background-color: #1A1F23;
     }
   }
 }

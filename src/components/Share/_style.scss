@@ -4,6 +4,9 @@
     padding: 1rem 1rem 2rem;
     font-size: 1rem;
     resize: none;
+    &:focus {
+      outline: none;
+    }
   }
   .share-buttons {
     button {
