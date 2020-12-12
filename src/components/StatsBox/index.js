@@ -32,7 +32,7 @@ const StatsBox = ({
           <p>Missed</p>
           <h4>{missed} days</h4>
         </div>
-        <p className='share-button border' onClick={() => { handleModal(isModalOpen, setModalOpen); }}><b>Share</b></p>
+        <p className='share-button' onClick={() => { handleModal(isModalOpen, setModalOpen); }}><b>Share</b></p>
       </fieldset>
       <Modal isOpen={isModalOpen} closeHandler={() => { handleModal(isModalOpen, setModalOpen); }}>
         <Share streak={streak} closeHandler={() => { handleModal(isModalOpen, setModalOpen); }}/>

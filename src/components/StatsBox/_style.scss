@@ -16,10 +16,10 @@
     }
   }
   .share-button {
+    @extend button;
     cursor: pointer;
     font-size: 1.5rem;
     width: 100px;
-    padding: 4px;
     margin: 1.5rem auto 1rem;
   }
 }

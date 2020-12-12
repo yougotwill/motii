@@ -38,6 +38,11 @@ body {
     a, .arrow, .action {
       color: #F8FAFB;
     }
+    button {
+      background-color: #333333;
+      color: #EB196D;
+      border-color: transparent;
+    }
     h1 {
       color: #EB196D;
     }
@@ -91,6 +96,17 @@ a, .action {
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
+}
+
+button {
+  background-color: #EFEFEF;
+  padding: 0.25rem 0.5rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  &:focus {
+    outline: none;
+  }
 }
 
 input {

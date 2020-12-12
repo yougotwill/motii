@@ -15,6 +15,7 @@
         margin-bottom: 0.5rem;
       }
       input {
+        @extend button;
         margin-bottom: 1rem;
       }
       input[type=submit] {
