@@ -1,20 +1,17 @@
 // TODO move into modal
-import React from 'react';
+import React, { useState } from 'react';
 import { useConfig } from '../../contexts/ConfigContext';
 
 import { fireworks } from '../../shared/confetti';
 
 import Donate from '../../components/Donate';
+import Modal from '../../components/Modal';
 
 import { version } from '../../../package.json';
 
 const Settings = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
   const { hideIntro, positivity, updateHideIntro, updatePositivity } = useConfig();
-  const clearConfig = () => {
-    // TODO confirmation
-    localStorage.removeItem('config');
-    window.location.replace('/');
-  };
 
   const positivityHandler = () => {
     updatePositivity(!positivity);
@@ -25,6 +22,18 @@ const Settings = () => {
 
   const hideIntroHandler= () => {
     updateHideIntro(!hideIntro);
+  };
+   
+  const handleModal = (modalState, modalHandler) => {
+    modalHandler(!modalState);
+  };
+
+  const changeHandler = (agree) => {
+    if (agree) {
+      localStorage.removeItem('config');
+      window.location.replace('/');
+    }
+    handleModal(isModalOpen, setModalOpen);
   };
 
   return (
@@ -53,11 +62,18 @@ const Settings = () => {
         </div>
         <div className='setting'>
           <h3>Clear app data</h3>
-          <button onClick={clearConfig}>Clear Data</button>
+          <button onClick={() => { handleModal(isModalOpen, setModalOpen); } }>Clear Data</button>
         </div>
     		<Donate />
         <p className='version'>v{version}</p>
       </div>
+      <Modal isOpen={isModalOpen} setModalOpen={setModalOpen} closeHandler={() => { changeHandler(false); }}>
+        <h3>Clear data?</h3>
+        <p>Delete your settings and habit data?</p>
+        <p>This action cannot be undone.</p>
+        <button className='dialog-button' onClick={() => { changeHandler(true); }}>Yes</button>
+        <button className='dialog-button' onClick={() => { changeHandler(false); }}>No</button>
+      </Modal>
     </div>
   );
 };
