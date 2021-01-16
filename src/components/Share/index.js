@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   EmailShareButton,
@@ -17,6 +17,7 @@ const Share = ({
   streak,
   closeHandler
 }) => {
+  const shareUrl = 'https://motii.netlify.app';
   const title = () => {
     if (streak > 0) {
       return 'Day ' + streak + ' done! Want to start a good habit? Try out motii!';
@@ -24,26 +25,28 @@ const Share = ({
       return 'Want to start a good habit? Try out motii!';
     }
   };
-  const shareUrl = 'https://motii.netlify.app';
+  const [ shareText, setShareText ] = useState(title());
 
   return (
     <div className='share'>
       <h3>Share your progress!</h3>
-      <textarea className='share-text' type='text' value={title()} readOnly />
+      <textarea className='share-text' type='text' onChange={(event) => setShareText(event.target.value)}>
+        {shareText}
+      </textarea>
       <div className='share-buttons'>
-        <EmailShareButton url={shareUrl} subject='motii - the motivational calendar' body={title} onClick={closeHandler}>
+        <EmailShareButton resetButtonStyle={false} url={shareUrl} subject='motii - the motivational calendar' body={shareText} onShareWindowClose={closeHandler}>
           <EmailIcon size={32} />
         </EmailShareButton>
-        <FacebookShareButton url={shareUrl} quote={title()}  onClick={closeHandler}>
+        <FacebookShareButton resetButtonStyle={false} url={shareUrl} quote={shareText} onShareWindowClose={closeHandler}>
           <FacebookIcon size={32} />
         </FacebookShareButton>
-        <TwitterShareButton url={shareUrl} title={title()}  onClick={closeHandler}>
+        <TwitterShareButton resetButtonStyle={false} url={shareUrl} title={shareText} onShareWindowClose={closeHandler}>
           <TwitterIcon size={32} />
         </TwitterShareButton>
-        <WhatsappShareButton url={shareUrl} title={title()} separator=':: '  onClick={closeHandler}>
+        <WhatsappShareButton resetButtonStyle={false} url={shareUrl} title={shareText} separator=':: ' onShareWindowClose={closeHandler}>
           <WhatsappIcon size={32} />
         </WhatsappShareButton>
-        <LineShareButton url={shareUrl} title={title()} onClick={closeHandler}>
+        <LineShareButton resetButtonStyle={false} url={shareUrl} title={shareText} onShareWindowClose={closeHandler}>
           <LineIcon size={32} />
         </LineShareButton>
       </div>

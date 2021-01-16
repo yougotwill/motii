@@ -1,7 +1,7 @@
 // TODO: Cleanup
 .calendar {
   // width: calc(320px - 24px);
-  padding-bottom: 1rem;
+  padding: 0 0.25rem 1rem;
   button {
     cursor: pointer;
   }
@@ -16,13 +16,19 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    .day {
+    .cell {
       width: 14.1%;
       height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      &.day {
+        cursor: pointer;
+        box-sizing: border-box;
+        &:hover {
+          @extend .border;
+        }
+      }
       &.today {
         background-color: #e6e6e6;
       }
@@ -38,6 +44,24 @@
           position: absolute;
           top: -21%;
           z-index: 10;
+        }
+      }
+    }
+  }
+  @include screen($mobile) {
+    .content {
+      .cell {
+        .day:hover{
+          border: none;
+        }
+      }
+    }
+  }
+  @include screen($laptop) {
+    .content {
+      .cell {
+        .day:hover {
+            border: unset;
         }
       }
     }

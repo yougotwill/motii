@@ -21,7 +21,7 @@ https://www.youtube.com/watch?v=mYyPbfpoZeM&list=PL4cUxeGkcC9itfjle0ji1xOZ2cjRGY
 - [x] Use Portal from react-dom for modal
 - [x] Update html meta data (Look into using react helmet)
 - [ ] Test Firebase on prod, netlify
-- [ ] Move sass imports to the top of the file, rename all style files to _style.scss and import as ..../style
+- [x] Move sass imports to the top of the file, rename all style files to _style.scss and import as ..../style
 
 ### Known Issues
 - [ ] Need to make missed days not include today in count
@@ -34,10 +34,11 @@ https://www.youtube.com/watch?v=mYyPbfpoZeM&list=PL4cUxeGkcC9itfjle0ji1xOZ2cjRGY
 ## Long-term
 
 - [x] Link backend and setup sign in and login (looking into firebase)
-- [ ] Privacy Page
+- [x] Privacy Page
 - [x] Look into using react router
 - [x] Implement Positive Reinforcement
 - [x] Stats share button
+- [ ] Split up ConfigContext into UIContext and DataContext for performance
 
 ## Settings
 

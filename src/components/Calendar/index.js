@@ -82,7 +82,7 @@ const Calendar = ({
           return (
             <div
               key={index}
-              className='day'>
+              className='cell'>
               <strong>{d}</strong>
             </div>
           );
@@ -94,7 +94,7 @@ const Calendar = ({
             return (
               <div
                 key={index}
-                className={`day${isToday(d) ? ' today' : ''}${d === day ? ' selected': ''}${data[`${year}-${month}-${d}`] ? ' success' : ''}`}
+                className={`cell day${isToday(d) ? ' today' : ''}${d === day ? ' selected': ''}${data[`${year}-${month}-${d}`] ? ' success' : ''}`}
                 onClick={(event) => {
                   handleDayClick(event, d);
                 }}>
