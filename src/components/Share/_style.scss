@@ -10,7 +10,11 @@
   }
   .share-buttons {
     button {
+      width: 34px;
+      height: 34px;
+      padding: 0;
       margin: 0.5rem;
+      border: 1px solid black;
     }
   }
 }

@@ -128,6 +128,11 @@ legend {
   padding-right: 1rem;
 }
 
+textarea {
+  background-color: rgba(128, 128, 128, 0.15);
+  border: 1px solid black;
+}
+
 @include screen($tablet) {
   // https://css-tricks.com/eliminate-jumps-in-horizontal-centering-by-forcing-a-scroll-bar/
   html {

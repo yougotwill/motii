@@ -48,4 +48,22 @@
       }
     }
   }
+  @include screen($mobile) {
+    .content {
+      .cell {
+        .day:hover{
+          border: none;
+        }
+      }
+    }
+  }
+  @include screen($laptop) {
+    .content {
+      .cell {
+        .day:hover {
+            border: unset;
+        }
+      }
+    }
+  }
 }
