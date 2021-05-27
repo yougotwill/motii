@@ -1,4 +1,4 @@
-.login {
+.forgot-password {
   h1 {
     margin: 1rem 0;
   }
@@ -15,6 +15,7 @@
         margin-bottom: 0.5rem;
       }
       input {
+        @extend button;
         margin-bottom: 1rem;
       }
       input[type=submit] {

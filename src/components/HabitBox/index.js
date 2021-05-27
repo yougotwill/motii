@@ -1,21 +1,31 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useConfig } from '../../contexts/ConfigContext';
 
 import Editable from '../Editable';
 import Modal from '../Modal';
 
-const HabitBox = ({ habit, setHabit, handleModal }) => {
+const HabitBox = ({
+  handleModal,
+}) => {
+  const { habit, updateHabit } = useConfig();
   const [isModalOpen, setModalOpen] = useState(false);
-  const [text, setText] = useState(habit);
+  const [text, setText] = useState('');
   const inputRef = useRef();
 
   const changeHandler = (agree) => {
     if (agree) {
-      setHabit(text);
+      updateHabit(text);
     } else {
       setText(habit);
     }
     handleModal(isModalOpen, setModalOpen);
   };
+
+  useEffect(() => {
+    if (habit) {
+      setText(habit);
+    }
+  }, [habit]);
 
   return (
     <form className='habitbox'>
@@ -43,8 +53,8 @@ const HabitBox = ({ habit, setHabit, handleModal }) => {
       <Modal isOpen={isModalOpen} setModalOpen={setModalOpen} closeHandler={() => { changeHandler(false); }}>
         <h3>Changing habits?</h3>
         <p>This will clear your streak</p>
-        <button onClick={() => { changeHandler(true); }}>Yes</button>
-        <button onClick={() => { changeHandler(false); }}>No</button>
+        <button className='dialog-button' onClick={() => { changeHandler(true); }}>Yes</button>
+        <button className='dialog-button' onClick={() => { changeHandler(false); }}>No</button>
       </Modal>
     </form>
   );

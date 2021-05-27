@@ -1,3 +1,30 @@
+// mixins
+@import '../styles/mixins/screen.scss';
+@import '../styles/mixins/shake.scss';
+
+// pages
+@import '../pages/Login/style';
+@import '../pages/Signup/style';
+@import '../pages/ForgotPassword/style';
+@import '../pages/Main/style';
+@import '../pages/Account/style';
+@import '../pages/Update/style';
+@import '../pages/Settings/style';
+
+// components
+@import '../components/Calendar/style';
+@import '../components/Header/style';
+@import '../components/HabitBox/style';
+@import '../components/StatsBox/style';
+@import '../components/About/style';
+@import '../components/Footer/style';
+@import '../components/Donate/style';
+@import '../components/Modal/style';
+@import '../components/Share/style';
+
+$darkColor: #EB196D;
+$darkBackground: #1A1F23;
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -9,19 +36,33 @@ body {
   background: #F5F8FF;
 
   &.dark {
-    background: #1A1F23;
-    color: #EB196D;
-    a, .arrow {
+    background: $darkBackground;
+    color: $darkColor;
+    a, .arrow, .action {
       color: #F8FAFB;
     }
+    button {
+      background-color: #333333;
+      color: $darkColor;
+      border-color: transparent;
+      cursor: pointer;
+    }
     h1 {
-      color: #EB196D;
+      color: $darkColor;
+    }
+    textarea {
+      background-color: #333333;
+      color: white;
+      border-color: $darkColor;
     }
     .border {
-      border-color: #EB196D;
+      border-color: $darkColor;
     }
-    .calendar .content .day.today, .modal-container .modal-box {
+    .calendar .content .day.today {
       background-color: #333333;
+    }
+    .modal-container .modal-box {
+      background-color: $darkBackground;
     }
   }
 }
@@ -36,7 +77,7 @@ body {
 .banner {
   text-align: center;
   padding: 0.25rem;
-  border: 1px solid red;
+  border: 1px solid $darkColor;
   background-color: rgba($color: grey, $alpha: 0.15);
   z-index: 50;
 }
@@ -58,9 +99,21 @@ h1 {
   color: black;
 }
 
-a {
+a, .action {
   font-weight: 700;
   text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  background-color: #EFEFEF;
+  padding: 0.25rem 0.5rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  &:focus {
+    outline: none;
+  }
 }
 
 input {
@@ -78,24 +131,10 @@ legend {
   padding-right: 1rem;
 }
 
-// mixins
-@import '../styles/mixins/screen.scss';
-
-// pages
-@import '../pages/Login/_Login.scss';
-@import '../pages/Signup/_Signup.scss';
-@import '../pages/Main/_Main.scss';
-@import '../pages/Settings/_Settings.scss';
-
-// components
-@import '../components/Calendar/_Calendar.scss';
-@import '../components/Header/_Header.scss';
-@import '../components/HabitBox/_HabitBox.scss';
-@import '../components/StatsBox/_StatsBox.scss';
-@import '../components/About/_About.scss';
-@import '../components/Footer/_Footer.scss';
-@import '../components/Donate/_Donate.scss';
-@import '../components/Modal/_Modal.scss';
+textarea {
+  background-color: rgba(128, 128, 128, 0.15);
+  border: 1px solid black;
+}
 
 @include screen($tablet) {
   // https://css-tricks.com/eliminate-jumps-in-horizontal-centering-by-forcing-a-scroll-bar/

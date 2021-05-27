@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   BrowserRouter,
   Switch,
@@ -8,175 +8,61 @@ import {
 
 import './styles/App.scss';
 
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+// import { AuthProvider } from './contexts/AuthContext';
+import { ConfigProvider } from './contexts/ConfigContext';
+
+// import Login from './pages/Login';
+// import Signup from './pages/Signup';
+// import ForgotPassword from './pages/ForgotPassword';
 import Main from './pages/Main';
 import Privacy from './pages/Privacy';
+// import Account from './pages/Account';
+// import Update from './pages/Update';
 import Settings from './pages/Settings';
 
+// import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-const App = (props) => {
-  const today = new Date();
-
-  const toggleModal = (modalState, modalHandler) => {
-    modalHandler(!modalState);
-  };
-
-  const [theme, setTheme] = useState('');
-  const [hideIntro, setHideIntro] = useState(false);
-  const [positivity, setPositivity] = useState(false);
-
-  const [data, setData] = useState({});
-  const [streak, setStreak] = useState(0);
-  const [missed, setMissed] = useState(0);
-
-  const updateStreak = (value) => {
-    const streakVal = value > 0 ? value : 0;
-    setStreak(streakVal);
-  };
-
-  const updateMissedDays = (streak) => {
-    const missedVal = today.getDate() - streak > 0 ? (today.getDate() - streak) : 0;
-    setMissed(missedVal);
-  };
-
-  const updateHideIntro = (value) => {
-    setHideIntro(value);
-    updateConfig('hideIntro', value);
-  };
-
-  const updatePositivity = (value) => {
-    setPositivity(value);
-    updateConfig('positivity', value);
-  };
-
-  const updateSettings = (property, value) => {
-    if (value !== null) {
-      switch (property) {
-        case 'hideIntro':
-          setHideIntro(value);
-          break;
-        case 'positivity':
-          setPositivity(value);
-          break;
-        case 'theme':
-          setTheme(value);
-          document.querySelector('body').className = value;
-          break;
-        default:
-          break;
-      }
-    }
-  };
-
-  const loadAppData = (existingConfig) => {
-    let config = existingConfig ? existingConfig : JSON.parse(localStorage.getItem('config'));
-    if (!config) { return {}; }
-
-    config.data ? setData(config.data) : setData({});
-    const streakVal = config.data ? Object.keys(config.data).filter((key) => {
-        return Number(key.split('-')[1]) === today.getMonth();
-      }).length : 0;
-    updateStreak(streakVal);
-    updateMissedDays(streakVal);
-
-    updateSettings('hideIntro', config.hideIntro);
-    updateSettings('positivity', config.positivity);
-    updateSettings('theme', config.theme);
-
-    return config;
-  };
-
-  const updateConfig = (property, value, clear=false) => {
-    const config = {
-      data,
-      theme,
-      hideIntro,
-      positivity
-    };
-
-    const props = property.split('.');
-    if (props.length > 1) {
-      if (config[props[0]][props[1]] === value) {
-        return;
-      }
-      if (clear) {
-        delete config[props[0]][props[1]];
-      } else {
-        config[props[0]][props[1]] = value;
-      }
-    } else {
-      if (config[property] === value) {
-        return;
-      }
-      if (clear) {
-        delete config[property];
-      } else {
-        config[property] = value;
-      }
-    }
-
-    localStorage.setItem('config', JSON.stringify(config));
-    return loadAppData(config);
-  };
-
+const App = () => {
   const HeaderWithRouter = withRouter(Header);
-
-  const mainProps = {
-    handleModal: toggleModal,
-    handleConfigChange: updateConfig,
-    updateStreak: setStreak,
-    updateMissedDays: updateMissedDays,
-    hideIntro,
-    today,
-    data,
-    streak,
-    missed
-  };
-
-  const settingsProps = {
-    handleConfigChange: updateConfig,
-    handleHideIntro: updateHideIntro,
-    handlePositivity: updatePositivity,
-    hideIntro,
-    positivity
-  };
-
-  useEffect(() => {
-    loadAppData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <BrowserRouter>
-      <div className='app'>
-        <HeaderWithRouter handleConfigChange={updateConfig} theme={theme} />
-        <Switch>
-          <Route path='/login'>
-            <Login />
-          </Route>
-          <Route path='/signup'>
-            <Signup />
-          </Route>
-          <Route path='/privacy'>
-            <Privacy />
-          </Route>
-          <Route path='/settings'>
-            <>
-              <Settings {...settingsProps} />
-              <Footer />
-            </>
-          </Route>
-          <Route path='/'>
-            <>
-              <Main {...mainProps} />
-              <Footer />
-            </>
-          </Route>
-        </Switch>
-      </div>
+      {/* <AuthProvider> */}
+        <ConfigProvider>
+          <div className='app'>
+            <HeaderWithRouter />
+            <Switch>
+              {/* <Route path='/login'>
+                <Login />
+              </Route>
+              <Route path='/signup'>
+                <Signup />
+              </Route>
+              <Route path='/forgot-password'>
+                <ForgotPassword />
+              </Route> */}
+              <Route path='/privacy'>
+                <Privacy />
+              </Route>
+              {/* <PrivateRoute path='/account'>
+                <Account />
+              </PrivateRoute>
+              <PrivateRoute path='/update'>
+                <Update />
+              </PrivateRoute> */}
+              <Route path='/settings'>
+                <Settings />
+              </Route>
+              <Route path='/'>
+                <Main />
+              </Route>
+            </Switch>
+            <Footer />
+          </div>
+        </ConfigProvider>
+      {/* </AuthProvider> */}
     </BrowserRouter>
   );
 };

@@ -23,7 +23,7 @@
     left: 0;
     overflow-y: auto;
     margin: 2rem auto;
-    border-radius: 0.25rem;
+    // border-radius: 0.25rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -44,18 +44,24 @@
       text-align: center;
       font-size: 1.3rem;
       font-weight: 700;
-      button {
-        margin: auto 1rem 1.5rem;
-        min-width: 50px;
-      }
       h3 {
         margin-top: 0.5rem;
         margin-bottom: 0;
+      }
+      img {
+        width: 50%;
       }
       p {
         font-size: 1rem;
         margin-bottom: 1.25rem;
       }
+      .dialog-button {
+        margin: auto 1rem 1.5rem;
+        min-width: 50px;
+      }
+    }
+    &.modal-shake {
+      @include shake(0.5s, 5);
     }
     @include screen($tablet) {
       width: 33.333334%;

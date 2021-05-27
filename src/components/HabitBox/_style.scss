@@ -5,12 +5,10 @@
     margin: 0.5rem auto;
     width: 240px;
     input {
+      @extend button;
       font-size: 1.17rem;
       font-weight: 700;
       text-align: center;
-      border-width: 1px;
-      border-style: solid;
-      border-color: currentColor;
       padding: 0.25rem 0;
       line-height: 1.2;
       width: 100%;

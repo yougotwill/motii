@@ -1,0 +1,20 @@
+.share {
+  .share-text {
+    margin: 1.5rem 1rem 1rem;
+    padding: 1rem 1rem 2rem;
+    font-size: 1rem;
+    resize: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  .share-buttons {
+    button {
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      margin: 0.5rem;
+      border: 1px solid black;
+    }
+  }
+}

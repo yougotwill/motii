@@ -1,36 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import { useConfig } from '../../contexts/ConfigContext';
 
+import { fireworks } from '../../shared/confetti';
 import { MONTHS, DAYS_OF_WEEK, getNumDays } from '../../shared/datetime';
 
 import Modal from '../Modal';
 
 const Calendar = ({
-  handleConfigChange,
-  data,
-  habit,
-  today,
-  streak,
-  updateStreak,
-  updateMissedDays,
   handleModal
 }) => {
-  const [isModalOpen, setModalOpen] = useState(false);
-
+  const { today, habit, data, positivity, streak, updateConfig, updateStreak } = useConfig();
+  const [date, setDate] = useState(today);
+  const [day, setDay] = useState(date.getDate());
+  const [month, setMonth] = useState(date.getMonth());
+  const [year, setYear] = useState(date.getFullYear());
   const getStartDayOfMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
+  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
+
+  const [isWarningModalOpen, setWarningModalOpen] = useState(false);
+  const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
 
   const isToday = (d) => {
     return year === today.getFullYear() &&
       month === today.getMonth() &&
       d === today.getDate();
   };
-
-  const [date, setDate] = useState(today);
-  const [day, setDay] = useState(date.getDate());
-  const [month, setMonth] = useState(date.getMonth());
-  const [year, setYear] = useState(date.getFullYear());
-  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
 
   const handleDayClick = (event, d) => {
     // TODO Future days needs a better solution
@@ -42,22 +38,28 @@ const Calendar = ({
     const dateString = `${year}-${month}-${event.target.innerText}`;
     let value = 0;
     if (data[dateString]) {
-      handleConfigChange(`data.${dateString}`, '', true);
+      updateConfig(`data.${dateString}`, '', true);
       value = -1;
     } else {
-      if (habit.length > 0) {
-        handleConfigChange(`data.${dateString}`, habit);
+      if (habit && habit.length > 0) {
+        updateConfig(`data.${dateString}`, habit);
         value = 1;
+        
+        event.target.classList.toggle('success');
+        setDate(new Date(year, month, event.target.innerText));
+
+        handleModal(isSuccessModalOpen, setSuccessModalOpen);
+
+        if (positivity) {
+          fireworks();
+        }
+
+        if (month === today.getMonth()) {
+          updateStreak(streak + value);
+        }
       } else {
-        handleModal(isModalOpen, setModalOpen);
+        handleModal(isWarningModalOpen, setWarningModalOpen);
       }
-    }
-
-    event.target.classList.toggle('success');
-    setDate(new Date(year, month, event.target.innerText));
-
-    if (month === today.getMonth()) {
-      updateStreak(streak += value);
     }
   };
 
@@ -80,7 +82,7 @@ const Calendar = ({
           return (
             <div
               key={index}
-              className='day'>
+              className='cell'>
               <strong>{d}</strong>
             </div>
           );
@@ -92,7 +94,7 @@ const Calendar = ({
             return (
               <div
                 key={index}
-                className={`day${isToday(d) ? ' today' : ''}${d === day ? ' selected': ''}${data[`${year}-${month}-${d}`] ? ' success' : ''}`}
+                className={`cell day${isToday(d) ? ' today' : ''}${d === day ? ' selected': ''}${data[`${year}-${month}-${d}`] ? ' success' : ''}`}
                 onClick={(event) => {
                   handleDayClick(event, d);
                 }}>
@@ -101,8 +103,14 @@ const Calendar = ({
             );
           })}
       </div>
-      <Modal isOpen={isModalOpen} closeHandler={() => { handleModal(isModalOpen, setModalOpen); }}>
+      <Modal isOpen={isWarningModalOpen} closeHandler={() => { handleModal(isWarningModalOpen, setWarningModalOpen); }}>
         <h4>Please fill in your habit.</h4>
+      </Modal>
+      <Modal isOpen={isSuccessModalOpen && positivity} closeHandler={() => { handleModal((isSuccessModalOpen && positivity), setSuccessModalOpen); }} shake={positivity}>
+        <h4>Great job!</h4>
+        <img src='https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg' alt='cat' />
+        <p>Ginger is proud of you.</p>
+        <p>See you tomorrow <span role='img' aria-label='flex'>💪</span></p>
       </Modal>
     </div>
   );
