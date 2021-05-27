@@ -51,7 +51,7 @@ const Header = ({ location }) => {
       </Link>
       { silentRoutes.indexOf(location.pathname) === -1 ?
         <div className='options'>
-          <div className='account'>
+          {/* <div className='account'>
             {currentUser ?
               <>
               <Link to='/account'>Account</Link>
@@ -63,7 +63,7 @@ const Header = ({ location }) => {
                 <Link to='/signup'>Sign Up</Link>
               </>
             }
-          </div>
+          </div> */}
           <span className='theme-toggle' role='img' aria-label={theme ? 'sun' : 'sunglasses'} onClick={() => updateTheme(theme ? '' : 'dark')}>{theme ? '☀️' : '😎'}</span>
           <Link to={location.pathname !== '/settings' ? '/settings' : '/'}><span className='settings-toggle' role='img' aria-label={'gear'}>{location.pathname !== '/settings' ? '⚙️' : '🗓️'}</span></Link>
         </div>

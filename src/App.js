@@ -34,7 +34,7 @@ const App = () => {
           <div className='app'>
             <HeaderWithRouter />
             <Switch>
-              <Route path='/login'>
+              {/* <Route path='/login'>
                 <Login />
               </Route>
               <Route path='/signup'>
@@ -42,16 +42,16 @@ const App = () => {
               </Route>
               <Route path='/forgot-password'>
                 <ForgotPassword />
-              </Route>
+              </Route> */}
               <Route path='/privacy'>
                 <Privacy />
               </Route>
-              <PrivateRoute path='/account'>
+              {/* <PrivateRoute path='/account'>
                 <Account />
               </PrivateRoute>
               <PrivateRoute path='/update'>
                 <Update />
-              </PrivateRoute>
+              </PrivateRoute> */}
               <Route path='/settings'>
                 <Settings />
               </Route>
