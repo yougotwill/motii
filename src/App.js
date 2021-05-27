@@ -8,7 +8,7 @@ import {
 
 import './styles/App.scss';
 
-import { AuthProvider } from './contexts/AuthContext';
+// import { AuthProvider } from './contexts/AuthContext';
 import { ConfigProvider } from './contexts/ConfigContext';
 
 // import Login from './pages/Login';
@@ -29,7 +29,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <AuthProvider>
+      {/* <AuthProvider> */}
         <ConfigProvider>
           <div className='app'>
             <HeaderWithRouter />
@@ -62,7 +62,7 @@ const App = () => {
             <Footer />
           </div>
         </ConfigProvider>
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </BrowserRouter>
   );
 };
