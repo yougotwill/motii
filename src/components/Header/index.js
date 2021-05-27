@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useConfig } from '../../contexts/ConfigContext';
 
-import { Link, useHistory } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { Link } from 'react-router-dom';
+// import { useAuth } from '../../contexts/AuthContext';
 
 const Header = ({ location }) => {
   const { theme, updateConfig, loadAppData } = useConfig();
-  const [error, setError] = useState('');
-  const history = useHistory();
-  const { currentUser, logout } = useAuth();
+  // const [error, setError] = useState('');
+  // const history = useHistory();
+  // const { currentUser, logout } = useAuth();
   const silentRoutes = ['/login', '/signup', '/forgot-password' ,'/privacy'];
 
   const updateTheme = (themeName) => {
     updateConfig('theme', themeName);
   };
-  const handleLogout = async () => {
-    try {
-      setError('');
-      await logout();
-      history.push('/login');
-    } catch(err) {
-      setError('Failed to log out');
-      console.error(err);
-    }
-  };
+  // const handleLogout = async () => {
+  //   try {
+  //     setError('');
+  //     await logout();
+  //     history.push('/login');
+  //   } catch(err) {
+  //     setError('Failed to log out');
+  //     console.error(err);
+  //   }
+  // };
 
   useEffect(() => {
     loadAppData();
@@ -68,9 +68,9 @@ const Header = ({ location }) => {
           <Link to={location.pathname !== '/settings' ? '/settings' : '/'}><span className='settings-toggle' role='img' aria-label={'gear'}>{location.pathname !== '/settings' ? '⚙️' : '🗓️'}</span></Link>
         </div>
       : null}
-      {error &&
+      {/* {error &&
         <h2 className='banner'>{error}! <span role='img' aria-label='police light'>🚨</span></h2>
-      }
+      } */}
     </div>
   );
 };
